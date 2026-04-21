@@ -9,12 +9,36 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PatrimoineRouteImport } from './routes/patrimoine'
+import { Route as HumanitaireRouteImport } from './routes/humanitaire'
 import { Route as EmpireRouteImport } from './routes/empire'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CommunicationRouteImport } from './routes/communication'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PatrimoineRoute = PatrimoineRouteImport.update({
+  id: '/patrimoine',
+  path: '/patrimoine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HumanitaireRoute = HumanitaireRouteImport.update({
+  id: '/humanitaire',
+  path: '/humanitaire',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmpireRoute = EmpireRouteImport.update({
   id: '/empire',
   path: '/empire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunicationRoute = CommunicationRouteImport.update({
+  id: '/communication',
+  path: '/communication',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +49,100 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/communication': typeof CommunicationRoute
+  '/contact': typeof ContactRoute
   '/empire': typeof EmpireRoute
+  '/humanitaire': typeof HumanitaireRoute
+  '/patrimoine': typeof PatrimoineRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/communication': typeof CommunicationRoute
+  '/contact': typeof ContactRoute
   '/empire': typeof EmpireRoute
+  '/humanitaire': typeof HumanitaireRoute
+  '/patrimoine': typeof PatrimoineRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/communication': typeof CommunicationRoute
+  '/contact': typeof ContactRoute
   '/empire': typeof EmpireRoute
+  '/humanitaire': typeof HumanitaireRoute
+  '/patrimoine': typeof PatrimoineRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/empire'
+  fullPaths:
+    | '/'
+    | '/communication'
+    | '/contact'
+    | '/empire'
+    | '/humanitaire'
+    | '/patrimoine'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/empire'
-  id: '__root__' | '/' | '/empire'
+  to:
+    | '/'
+    | '/communication'
+    | '/contact'
+    | '/empire'
+    | '/humanitaire'
+    | '/patrimoine'
+  id:
+    | '__root__'
+    | '/'
+    | '/communication'
+    | '/contact'
+    | '/empire'
+    | '/humanitaire'
+    | '/patrimoine'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunicationRoute: typeof CommunicationRoute
+  ContactRoute: typeof ContactRoute
   EmpireRoute: typeof EmpireRoute
+  HumanitaireRoute: typeof HumanitaireRoute
+  PatrimoineRoute: typeof PatrimoineRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/patrimoine': {
+      id: '/patrimoine'
+      path: '/patrimoine'
+      fullPath: '/patrimoine'
+      preLoaderRoute: typeof PatrimoineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/humanitaire': {
+      id: '/humanitaire'
+      path: '/humanitaire'
+      fullPath: '/humanitaire'
+      preLoaderRoute: typeof HumanitaireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/empire': {
       id: '/empire'
       path: '/empire'
       fullPath: '/empire'
       preLoaderRoute: typeof EmpireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communication': {
+      id: '/communication'
+      path: '/communication'
+      fullPath: '/communication'
+      preLoaderRoute: typeof CommunicationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunicationRoute: CommunicationRoute,
+  ContactRoute: ContactRoute,
   EmpireRoute: EmpireRoute,
+  HumanitaireRoute: HumanitaireRoute,
+  PatrimoineRoute: PatrimoineRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
