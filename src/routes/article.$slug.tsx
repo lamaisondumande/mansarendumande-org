@@ -3,8 +3,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { GoldRule, Ornament } from "@/components/Ornament";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
-import { articles, getArticle, pick } from "@/data/articles";
-import { useLang } from "@/lib/i18n";
+import { articles, getArticle } from "@/data/articles";
+import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/article/$slug")({
@@ -94,7 +94,7 @@ function ArticlePage() {
         <ImagePlaceholder label={article.imageLabel} aspect="aspect-[16/9]" className="mb-12 shadow-elegant" />
 
         <div className="font-serif text-lg leading-[1.85] text-foreground/90 space-y-6 text-justify">
-          {body.map((p, i) => (
+          {body.map((p: string, i: number) => (
             <p
               key={i}
               className={

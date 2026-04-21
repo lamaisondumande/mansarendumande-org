@@ -15,6 +15,7 @@ import { Route as EmpireRouteImport } from './routes/empire'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunicationRouteImport } from './routes/communication'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArticleSlugRouteImport } from './routes/article.$slug'
 
 const PatrimoineRoute = PatrimoineRouteImport.update({
   id: '/patrimoine',
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArticleSlugRoute = ArticleSlugRouteImport.update({
+  id: '/article/$slug',
+  path: '/article/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/empire': typeof EmpireRoute
   '/humanitaire': typeof HumanitaireRoute
   '/patrimoine': typeof PatrimoineRoute
+  '/article/$slug': typeof ArticleSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/empire': typeof EmpireRoute
   '/humanitaire': typeof HumanitaireRoute
   '/patrimoine': typeof PatrimoineRoute
+  '/article/$slug': typeof ArticleSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/empire': typeof EmpireRoute
   '/humanitaire': typeof HumanitaireRoute
   '/patrimoine': typeof PatrimoineRoute
+  '/article/$slug': typeof ArticleSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/empire'
     | '/humanitaire'
     | '/patrimoine'
+    | '/article/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/empire'
     | '/humanitaire'
     | '/patrimoine'
+    | '/article/$slug'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/empire'
     | '/humanitaire'
     | '/patrimoine'
+    | '/article/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   EmpireRoute: typeof EmpireRoute
   HumanitaireRoute: typeof HumanitaireRoute
   PatrimoineRoute: typeof PatrimoineRoute
+  ArticleSlugRoute: typeof ArticleSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/article/$slug': {
+      id: '/article/$slug'
+      path: '/article/$slug'
+      fullPath: '/article/$slug'
+      preLoaderRoute: typeof ArticleSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmpireRoute: EmpireRoute,
   HumanitaireRoute: HumanitaireRoute,
   PatrimoineRoute: PatrimoineRoute,
+  ArticleSlugRoute: ArticleSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
