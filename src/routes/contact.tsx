@@ -25,7 +25,6 @@ function ContactPage() {
         eyebrow="Correspondance"
         title="Grande Chancellerie"
         subtitle="Toute requête diplomatique, demande d'audience ou message officiel."
-        image="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1920&q=80"
       />
 
       <section className="py-20 px-6">

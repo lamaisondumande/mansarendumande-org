@@ -43,7 +43,6 @@ function HumanitairePage() {
         eyebrow="Engagements"
         title="Actions humanitaires"
         subtitle="Au service du Mandé, des Mandeka et des peuples frères."
-        image="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80"
       />
 
       <section className="py-20 px-6">

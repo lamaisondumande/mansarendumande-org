@@ -39,7 +39,6 @@ function CommunicationPage() {
         eyebrow="Chancellerie"
         title="Communication & Presse"
         subtitle="Communiqués officiels, distinctions et rayonnement international."
-        image="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&q=80"
       />
 
       <section className="py-20 px-6">

@@ -61,7 +61,6 @@ function PatrimoinePage() {
         eyebrow="Patrimoine"
         title="Les capitales impériales"
         subtitle="Sur les traces des cités qui ont façonné la mémoire de l'Afrique."
-        image="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1920&q=80"
       />
 
       <section className="py-20 px-6">
