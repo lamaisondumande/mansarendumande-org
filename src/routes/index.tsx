@@ -2,10 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Ornament, GoldRule } from "@/components/Ornament";
-import heroMali from "@/assets/hero-mali.jpg";
-import birthEmpire from "@/assets/birth-empire.jpg";
-import mansa from "@/assets/mansa.jpg";
-import capitals from "@/assets/capitals.jpg";
+import { ImagePlaceholder, HeroPlaceholder } from "@/components/ImagePlaceholder";
 import coatOfArms from "@/assets/coat-of-arms.png";
 
 export const Route = createFileRoute("/")({
@@ -19,9 +16,6 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:title", content: "La Maison du Mandé" },
       { property: "og:description", content: "Au service du Mandé et des Mandeka — héritage de l'Empire du Mâli." },
-      { property: "og:image", content: heroMali },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: heroMali },
     ],
   }),
   component: HomePage,
@@ -32,21 +26,21 @@ const pillars = [
     title: "La naissance de l'Empire du Mâli",
     excerpt:
       "1235 — Soundjata Keita unit les peuples du Mandé après la victoire de Kirina. Une civilisation s'élève.",
-    image: birthEmpire,
+    label: "Naissance de l'Empire",
     to: "/empire" as const,
   },
   {
     title: "L'Empire du Mâli ou Empire Manden",
     excerpt:
       "De 1235 à 1670, un rayonnement politique, économique et spirituel sans précédent en Afrique de l'Ouest.",
-    image: mansa,
+    label: "Mansa du Mâli",
     to: "/empire" as const,
   },
   {
     title: "Les capitales impériales du Mâli",
     excerpt:
       "Niani, Kangaba, Tombouctou — sur les traces des cités qui ont façonné la mémoire du continent.",
-    image: capitals,
+    label: "Capitales impériales",
     to: "/patrimoine" as const,
   },
 ];
@@ -79,14 +73,8 @@ function HomePage() {
 
       {/* HERO */}
       <section className="relative h-[78vh] min-h-[560px] w-full overflow-hidden">
-        <img
-          src={heroMali}
-          alt="Architecture impériale du Mâli au coucher du soleil"
-          className="absolute inset-0 h-full w-full object-cover"
-          width={1920}
-          height={1080}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/60 via-burgundy-deep/30 to-burgundy-deep/85" />
+        <HeroPlaceholder label="Photographie principale (à remplacer)" />
+        <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep/85" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-ivory animate-fade-up">
           <img src={coatOfArms} alt="" className="h-24 md:h-32 mb-6 drop-shadow-2xl" width={128} height={128} />
           <p className="font-display text-xs md:text-sm tracking-[0.45em] uppercase text-gold mb-4">
@@ -137,17 +125,7 @@ function HomePage() {
                 to={p.to}
                 className="group block hover-gold-frame bg-card shadow-elegant transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="relative h-72 overflow-hidden">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                    width={1280}
-                    height={960}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-burgundy-deep/80 via-transparent to-transparent" />
-                </div>
+                <ImagePlaceholder label={p.label} aspect="aspect-[4/3]" />
                 <div className="p-8 text-center">
                   <h3 className="font-display text-xl text-burgundy-deep group-hover:text-burgundy transition-colors">
                     {p.title}
@@ -246,7 +224,15 @@ function HomePage() {
 
       {/* CTA */}
       <section className="relative py-24 px-6 gradient-royal text-ivory text-center overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url(${coatOfArms})`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundSize: "contain" }} />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `url(${coatOfArms})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "contain",
+          }}
+        />
         <div className="relative max-w-3xl mx-auto">
           <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">Engagement</p>
           <h2 className="mt-4 font-display text-4xl md:text-5xl text-balance">
