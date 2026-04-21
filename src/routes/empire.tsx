@@ -2,8 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { GoldRule, Ornament } from "@/components/Ornament";
-import birthEmpire from "@/assets/birth-empire.jpg";
-import mansa from "@/assets/mansa.jpg";
+import { HeroPlaceholder, ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 export const Route = createFileRoute("/empire")({
   head: () => ({
@@ -16,7 +15,6 @@ export const Route = createFileRoute("/empire")({
       },
       { property: "og:title", content: "L'Empire du Mâli" },
       { property: "og:description", content: "1235–1670 : la naissance, l'apogée et l'héritage de l'Empire du Mâli." },
-      { property: "og:image", content: birthEmpire },
     ],
   }),
   component: EmpirePage,
@@ -30,7 +28,6 @@ function EmpirePage() {
         eyebrow="1235 — 1670"
         title="L'Empire du Mâli"
         subtitle="Quatre siècles de rayonnement politique, spirituel et culturel en Afrique de l'Ouest."
-        image={birthEmpire}
       />
 
       <article className="mx-auto max-w-3xl px-6 py-20 font-serif text-lg leading-[1.85] text-foreground/90 space-y-8 text-justify">
@@ -57,14 +54,7 @@ function EmpirePage() {
         </Section>
 
         <figure className="my-16">
-          <img
-            src={mansa}
-            alt="Portrait majestueux d'un Mansa de l'Empire du Mâli"
-            className="w-full shadow-royal"
-            loading="lazy"
-            width={1280}
-            height={960}
-          />
+          <ImagePlaceholder label="Portrait du Mansa" aspect="aspect-[16/10]" className="shadow-royal" />
           <figcaption className="mt-4 text-center font-serif italic text-sm text-muted-foreground">
             Le Mansa, héritier de Soundjata, gardien de la mémoire impériale.
           </figcaption>
@@ -107,17 +97,15 @@ export function PageHero({
   eyebrow,
   title,
   subtitle,
-  image,
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
-  image: string;
 }) {
   return (
     <section className="relative h-[55vh] min-h-[400px] w-full overflow-hidden">
-      <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" width={1920} height={1080} />
-      <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/70 via-burgundy-deep/40 to-burgundy-deep/80" />
+      <HeroPlaceholder label="Photographie de bannière" />
+      <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/50 via-burgundy-deep/30 to-burgundy-deep/80" />
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-ivory animate-fade-up">
         <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">{eyebrow}</p>
         <h1 className="mt-4 font-display text-5xl md:text-7xl text-balance max-w-4xl">{title}</h1>
