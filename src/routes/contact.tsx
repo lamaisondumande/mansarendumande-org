@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "./empire";
 import { GoldRule } from "@/components/Ornament";
 import { Mail, MapPin, Crown } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -18,44 +19,37 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { t } = useLang();
   return (
     <div className="min-h-screen flex flex-col bg-ivory">
       <SiteHeader />
-      <PageHero
-        eyebrow="Correspondance"
-        title="Grande Chancellerie"
-        subtitle="Toute requête diplomatique, demande d'audience ou message officiel."
-      />
+      <PageHero eyebrow={t("correspondence")} title={t("grand_chancery")} subtitle={t("contact_subtitle")} />
 
       <section className="py-20 px-6">
         <div className="mx-auto max-w-5xl grid gap-12 md:grid-cols-2">
           <div className="space-y-8">
             <div>
-              <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">Nous joindre</p>
-              <h2 className="mt-3 font-display text-4xl text-burgundy-deep">Vos messages</h2>
-              <GoldRule className="mt-4 mx-0" />
+              <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">{t("reach_us")}</p>
+              <h2 className="mt-3 font-display text-4xl text-burgundy-deep">{t("your_messages")}</h2>
+              <div className="h-px w-24 bg-gold/70 mt-4" />
             </div>
 
-            <p className="font-serif text-lg text-foreground/85 leading-relaxed">
-              La Grande Chancellerie reçoit avec attention toute correspondance adressée
-              à la Maison Impériale du Mandé. Chaque message est traité dans la plus
-              grande considération.
-            </p>
+            <p className="font-serif text-lg text-foreground/85 leading-relaxed">{t("chancery_intro")}</p>
 
             <ul className="space-y-5">
-              <ContactRow icon={<Crown size={20} />} label="Chef de Maison" value="S.A.I. Le Mansaren Hashim Keita du Mandé" />
-              <ContactRow icon={<Mail size={20} />} label="Courriel" value="contact@maisondumande.org" />
-              <ContactRow icon={<MapPin size={20} />} label="Siège" value="Grande Chancellerie de la Maison du Mandé" />
+              <ContactRow icon={<Crown size={20} />} label={t("head_of_house")} value="S.A.I. Le Mansaren Hashim Keita du Mandé" />
+              <ContactRow icon={<Mail size={20} />} label={t("email")} value="contact@maisondumande.org" />
+              <ContactRow icon={<MapPin size={20} />} label={t("head_office")} value="Grande Chancellerie de la Maison du Mandé" />
             </ul>
           </div>
 
           <form className="bg-card border border-gold/30 p-8 md:p-10 shadow-elegant space-y-5">
-            <Field label="Nom" type="text" name="name" />
-            <Field label="Courriel" type="email" name="email" />
-            <Field label="Sujet" type="text" name="subject" />
+            <Field label={t("name")} type="text" name="name" />
+            <Field label={t("email")} type="email" name="email" />
+            <Field label={t("subject")} type="text" name="subject" />
             <div>
               <label className="font-display text-[0.7rem] tracking-[0.3em] uppercase text-burgundy-deep">
-                Message
+                {t("message")}
               </label>
               <textarea
                 rows={6}
@@ -66,12 +60,14 @@ function ContactPage() {
               type="submit"
               className="w-full font-display text-xs tracking-[0.3em] uppercase bg-burgundy-deep text-ivory px-8 py-4 hover:bg-gold hover:text-burgundy-deep transition-colors"
             >
-              Envoyer le message
+              {t("send_message")}
             </button>
-            <p className="text-xs text-muted-foreground italic text-center">
-              Ce formulaire est fourni à titre indicatif.
-            </p>
+            <p className="text-xs text-muted-foreground italic text-center">{t("form_notice")}</p>
           </form>
+        </div>
+
+        <div className="text-center mt-16">
+          <GoldRule />
         </div>
       </section>
 

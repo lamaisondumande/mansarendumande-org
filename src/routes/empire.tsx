@@ -1,18 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { GoldRule, Ornament } from "@/components/Ornament";
 import { HeroPlaceholder, ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { useLang, pick } from "@/lib/i18n";
+import { getByCategory } from "@/data/articles";
 
 export const Route = createFileRoute("/empire")({
   head: () => ({
     meta: [
       { title: "L'Empire du Mâli — La Maison du Mandé" },
-      {
-        name: "description",
-        content:
-          "Histoire de l'Empire du Mâli (1235–1670) : la naissance, l'apogée sous Soundjata Keita et Mansa Musa, l'héritage spirituel et culturel.",
-      },
+      { name: "description", content: "Histoire de l'Empire du Mâli (1235–1670) : naissance, apogée sous Soundjata Keita et Mansa Musa, héritage spirituel et culturel." },
       { property: "og:title", content: "L'Empire du Mâli" },
       { property: "og:description", content: "1235–1670 : la naissance, l'apogée et l'héritage de l'Empire du Mâli." },
     ],
@@ -21,72 +19,75 @@ export const Route = createFileRoute("/empire")({
 });
 
 function EmpirePage() {
+  const { lang, t } = useLang();
+  const chapters = getByCategory("histoire");
+
   return (
     <div className="min-h-screen flex flex-col bg-ivory">
       <SiteHeader />
       <PageHero
         eyebrow="1235 — 1670"
-        title="L'Empire du Mâli"
-        subtitle="Quatre siècles de rayonnement politique, spirituel et culturel en Afrique de l'Ouest."
+        title={lang === "fr" ? "L'Empire du Mâli" : "The Mali Empire"}
+        subtitle={
+          lang === "fr"
+            ? "Quatre siècles de rayonnement politique, spirituel et culturel."
+            : "Four centuries of political, spiritual and cultural influence."
+        }
       />
 
-      <article className="mx-auto max-w-3xl px-6 py-20 font-serif text-lg leading-[1.85] text-foreground/90 space-y-8 text-justify">
-        <Section title="La naissance de l'Empire" eyebrow="1235">
-          <p className="first-letter:font-display first-letter:text-6xl first-letter:float-left first-letter:mr-3 first-letter:leading-none first-letter:text-burgundy">
-            En 1235, la victoire de Soundjata Keita à la bataille de Kirina sur le roi
-            sosso Soumangourou Kanté ouvre l'ère de l'Empire du Mâli. La fédération
-            naissante des peuples mandingues s'unit autour d'un projet commun — la paix,
-            la justice et la prospérité — formalisé l'année suivante par la Charte de
-            Kurukan Fuga, l'une des plus anciennes déclarations de droits humains au monde.
+      <section className="py-20 px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-14">
+            <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">{t("nav_history")}</p>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl text-burgundy-deep">
+              {lang === "fr" ? "Chapitres essentiels" : "Essential chapters"}
+            </h2>
+            <GoldRule className="mt-5" />
+          </div>
+
+          <div className="grid gap-10 md:grid-cols-3">
+            {chapters.map((c) => (
+              <Link
+                key={c.slug}
+                to="/article/$slug"
+                params={{ slug: c.slug }}
+                className="group block bg-card border border-gold/30 hover:shadow-royal hover:border-gold transition-all hover-gold-frame"
+              >
+                <ImagePlaceholder label={c.imageLabel} aspect="aspect-[4/3]" />
+                <div className="p-7 text-center">
+                  <p className="font-display text-[0.7rem] tracking-[0.3em] uppercase text-gold">
+                    {pick(lang, c.date)}
+                  </p>
+                  <h3 className="mt-2 font-display text-xl text-burgundy-deep leading-snug group-hover:text-burgundy transition-colors">
+                    {pick(lang, c.title)}
+                  </h3>
+                  <div className="gold-rule my-4 w-12 mx-auto" />
+                  <p className="text-muted-foreground text-[0.95rem]">{pick(lang, c.excerpt)}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Ornament className="my-4" />
+
+      <section className="py-20 px-6 bg-secondary/40">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">
+            {lang === "fr" ? "Charte fondatrice" : "Founding charter"}
           </p>
-        </Section>
-
-        <Ornament className="my-12" />
-
-        <Section title="L'apogée impériale" eyebrow="XIVᵉ siècle">
-          <p>
-            Sous le règne du Mansa Musa (1312–1337), l'Empire atteint son zénith. Le
-            pèlerinage à La Mecque en 1324, dont l'or distribué bouleverse durablement
-            l'économie méditerranéenne, fait connaître au monde la puissance et la
-            magnificence du Mâli. Tombouctou, Djenné et Gao deviennent des foyers
-            d'érudition, de commerce et de spiritualité.
-          </p>
-        </Section>
-
-        <figure className="my-16">
-          <ImagePlaceholder label="Portrait du Mansa" aspect="aspect-[16/10]" className="shadow-royal" />
-          <figcaption className="mt-4 text-center font-serif italic text-sm text-muted-foreground">
-            Le Mansa, héritier de Soundjata, gardien de la mémoire impériale.
-          </figcaption>
-        </figure>
-
-        <Section title="L'héritage spirituel et culturel" eyebrow="Civilisation">
-          <p>
-            L'Empire a semé une œuvre impérissable : la diffusion paisible de l'Islam,
-            un commerce florissant, une culture brillante riche en arts, en savoirs et
-            en humanisme. Les principes de tolérance, d'unité et de respect des traditions
-            inscrits dans la Charte de Kurukan Fuga continuent d'inspirer le Mandé contemporain.
-          </p>
-        </Section>
-
-        <Section title="Le crépuscule et la mémoire" eyebrow="1610 — 1670">
-          <p>
-            Comme toute grande civilisation, l'Empire connaît son déclin, affaibli par
-            des tensions internes et des agressions extérieures, malgré le courage du
-            dernier Mansa régnant, Mahmud IV Keita, qui œuvra jusqu'en 1610 à préserver
-            l'intégrité impériale. Mais l'Empire perdure dans les cultures, les mémoires
-            et les engagements de ceux qui voient en cet héritage une source profonde
-            d'inspiration et de responsabilité.
-          </p>
-        </Section>
-
-        <div className="mt-16">
-          <GoldRule />
-          <p className="mt-6 text-center font-display text-burgundy-deep tracking-[0.2em] text-sm">
-            Ô MANDÉ, MÉMOIRE VIVANTE
+          <h2 className="mt-3 font-display text-3xl md:text-4xl text-burgundy-deep">
+            {lang === "fr" ? "La Charte de Kurukan Fuga" : "The Kurukan Fuga Charter"}
+          </h2>
+          <GoldRule className="mt-5" />
+          <p className="mt-8 font-serif italic text-lg text-foreground/85 leading-relaxed">
+            {lang === "fr"
+              ? "Adoptée en 1236, l'une des plus anciennes déclarations de droits humains au monde — fondement du contrat social du Mandé."
+              : "Adopted in 1236, one of the oldest declarations of human rights in the world — foundation of the Mandé social contract."}
           </p>
         </div>
-      </article>
+      </section>
 
       <SiteFooter />
     </div>
@@ -117,24 +118,5 @@ export function PageHero({
         )}
       </div>
     </section>
-  );
-}
-
-function Section({
-  title,
-  eyebrow,
-  children,
-}: {
-  title: string;
-  eyebrow: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">{eyebrow}</p>
-      <h2 className="mt-2 font-display text-3xl md:text-4xl text-burgundy-deep">{title}</h2>
-      <div className="gold-rule my-5 w-16" />
-      {children}
-    </div>
   );
 }
