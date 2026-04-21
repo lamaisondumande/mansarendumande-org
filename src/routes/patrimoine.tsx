@@ -3,16 +3,13 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "./empire";
 import { GoldRule } from "@/components/Ornament";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/patrimoine")({
   head: () => ({
     meta: [
       { title: "Patrimoine impérial du Mâli — La Maison du Mandé" },
-      {
-        name: "description",
-        content:
-          "Les capitales impériales, les sites historiques et le patrimoine matériel et immatériel de l'Empire du Mâli.",
-      },
+      { name: "description", content: "Capitales impériales et patrimoine matériel et immatériel de l'Empire du Mâli." },
       { property: "og:title", content: "Patrimoine impérial du Mâli" },
       { property: "og:description", content: "Capitales, sites et héritage du Mâli." },
     ],
@@ -20,53 +17,38 @@ export const Route = createFileRoute("/patrimoine")({
   component: PatrimoinePage,
 });
 
-const sites = [
-  {
-    name: "Niani",
-    sub: "Première capitale de l'Empire",
-    text: "Berceau de Soundjata Keita et siège du pouvoir mansa, Niani fut le cœur politique d'un empire rayonnant.",
-  },
-  {
-    name: "Kangaba",
-    sub: "Cradle mythique du Mandé",
-    text: "Centre spirituel et symbolique, Kangaba abrite la Kamablon, sanctuaire restauré tous les sept ans.",
-  },
-  {
-    name: "Tombouctou",
-    sub: "Cité du savoir",
-    text: "Foyer d'érudition islamique, ses universités et bibliothèques rayonnèrent sur tout le monde médiéval.",
-  },
-  {
-    name: "Djenné",
-    sub: "Joyau d'argile",
-    text: "La Grande Mosquée de Djenné, plus vaste édifice en terre crue au monde, témoigne de l'art sahélien.",
-  },
-  {
-    name: "Gao",
-    sub: "Carrefour transsaharien",
-    text: "Étape majeure des routes caravanières, Gao fut un nœud de commerce et de diplomatie.",
-  },
-  {
-    name: "Ségou",
-    sub: "Mémoire bambara",
-    text: "Héritière des traditions du Mandé, Ségou perpétue l'art, la musique et la littérature orale.",
-  },
-];
+const sites = {
+  fr: [
+    { name: "Niani", sub: "Première capitale", text: "Berceau de Soundjata Keita et siège du pouvoir mansa." },
+    { name: "Kangaba", sub: "Berceau mythique", text: "Centre spirituel majeur ; abrite la Kamablon, sanctuaire restauré tous les sept ans." },
+    { name: "Tombouctou", sub: "Cité du savoir", text: "Foyer d'érudition islamique et carrefour transsaharien." },
+    { name: "Djenné", sub: "Joyau d'argile", text: "La Grande Mosquée, plus vaste édifice en terre crue au monde." },
+    { name: "Gao", sub: "Carrefour saharien", text: "Étape majeure des routes caravanières et pôle diplomatique." },
+    { name: "Ségou", sub: "Mémoire bambara", text: "Héritière des traditions du Mandé et de sa littérature orale." },
+  ],
+  en: [
+    { name: "Niani", sub: "First capital", text: "Birthplace of Sundiata Keita and seat of mansa power." },
+    { name: "Kangaba", sub: "Mythical cradle", text: "Major spiritual centre; home to the Kamablon shrine, restored every seven years." },
+    { name: "Timbuktu", sub: "City of knowledge", text: "A hub of Islamic scholarship and trans-Saharan crossroads." },
+    { name: "Djenné", sub: "Clay jewel", text: "The Great Mosque, the largest mud-brick building in the world." },
+    { name: "Gao", sub: "Saharan crossroads", text: "Major caravan stop and diplomatic centre." },
+    { name: "Ségou", sub: "Bambara memory", text: "Heir to the Mandé traditions and its oral literature." },
+  ],
+};
 
 function PatrimoinePage() {
+  const { lang, t } = useLang();
+  const list = sites[lang];
+
   return (
     <div className="min-h-screen flex flex-col bg-ivory">
       <SiteHeader />
-      <PageHero
-        eyebrow="Patrimoine"
-        title="Les capitales impériales"
-        subtitle="Sur les traces des cités qui ont façonné la mémoire de l'Afrique."
-      />
+      <PageHero eyebrow={t("heritage")} title={t("imperial_capitals")} subtitle={t("capitals_subtitle")} />
 
       <section className="py-20 px-6">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {sites.map((s) => (
+            {list.map((s) => (
               <article
                 key={s.name}
                 className="border border-gold/30 bg-card p-10 hover:shadow-royal hover:border-gold transition-all group"
@@ -83,10 +65,7 @@ function PatrimoinePage() {
 
           <div className="mt-20 text-center max-w-2xl mx-auto">
             <GoldRule />
-            <p className="mt-6 font-serif italic text-lg text-foreground/80">
-              Chaque pierre, chaque manuscrit, chaque chant transmis de génération en
-              génération est un fragment vivant de l'âme du Mandé.
-            </p>
+            <p className="mt-6 font-serif italic text-lg text-foreground/80">{t("each_stone")}</p>
           </div>
         </div>
       </section>

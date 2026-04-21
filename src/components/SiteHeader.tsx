@@ -2,18 +2,20 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import coatOfArms from "@/assets/coat-of-arms.png";
-
-const nav = [
-  { to: "/", label: "Accueil" },
-  { to: "/empire", label: "L'Empire du Mâli" },
-  { to: "/patrimoine", label: "Patrimoine" },
-  { to: "/humanitaire", label: "Engagements" },
-  { to: "/communication", label: "Communication" },
-  { to: "/contact", label: "Contact" },
-] as const;
+import { useLang } from "@/lib/i18n";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang, t } = useLang();
+
+  const nav = [
+    { to: "/" as const, label: t("nav_home") },
+    { to: "/empire" as const, label: t("nav_empire") },
+    { to: "/patrimoine" as const, label: t("nav_patrimoine") },
+    { to: "/humanitaire" as const, label: t("nav_humanitaire") },
+    { to: "/communication" as const, label: t("nav_communication") },
+    { to: "/contact" as const, label: t("nav_contact") },
+  ];
 
   return (
     <header className="relative z-40 bg-ivory">
@@ -23,7 +25,7 @@ export function SiteHeader() {
           <Link to="/" className="flex items-center gap-4 group">
             <img
               src={coatOfArms}
-              alt="Armoiries de la Maison du Mandé"
+              alt="Armoiries"
               className="h-16 w-16 md:h-20 md:w-20 object-contain transition-transform group-hover:scale-105"
               width={1024}
               height={1024}
@@ -33,18 +35,21 @@ export function SiteHeader() {
                 La Maison du Mandé
               </p>
               <p className="font-serif italic text-sm md:text-base text-muted-foreground mt-1">
-                Au service du Mandé et des Mandeka
+                {t("tagline")}
               </p>
             </div>
           </Link>
 
-          <button
-            className="md:hidden text-burgundy-deep"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
-          >
-            {open ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          <div className="flex items-center gap-4">
+            <LangSwitcher lang={lang} setLang={setLang} />
+            <button
+              className="md:hidden text-burgundy-deep"
+              onClick={() => setOpen((v) => !v)}
+              aria-label="Menu"
+            >
+              {open ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -54,7 +59,7 @@ export function SiteHeader() {
             <li key={n.to}>
               <Link
                 to={n.to}
-                className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors relative"
+                className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors"
                 activeProps={{ className: "text-gold" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
@@ -83,5 +88,24 @@ export function SiteHeader() {
         </nav>
       )}
     </header>
+  );
+}
+
+function LangSwitcher({ lang, setLang }: { lang: "fr" | "en"; setLang: (l: "fr" | "en") => void }) {
+  return (
+    <div className="flex items-center border border-gold/40 rounded-sm overflow-hidden">
+      {(["fr", "en"] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          className={`px-3 py-1.5 font-display text-[0.7rem] tracking-[0.2em] uppercase transition-colors ${
+            lang === l ? "bg-burgundy-deep text-gold" : "bg-ivory text-burgundy-deep hover:bg-secondary"
+          }`}
+          aria-label={l === "fr" ? "Français" : "English"}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
   );
 }

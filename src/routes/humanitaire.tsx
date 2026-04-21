@@ -1,56 +1,51 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { PageHero } from "./empire";
 import { GoldRule, Ornament } from "@/components/Ornament";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { getByCategory } from "@/data/articles";
+import { useLang, pick } from "@/lib/i18n";
+import { PageHero } from "./empire";
 
 export const Route = createFileRoute("/humanitaire")({
   head: () => ({
     meta: [
       { title: "Engagements humanitaires — La Maison du Mandé" },
-      {
-        name: "description",
-        content:
-          "Les actions humanitaires nationales et internationales menées par la Maison du Mandé : restaurations, aide aux populations, partenariats.",
-      },
-      { property: "og:title", content: "Engagements humanitaires de la Maison du Mandé" },
+      { name: "description", content: "Actions humanitaires nationales et internationales menées par la Maison du Mandé." },
+      { property: "og:title", content: "Engagements humanitaires" },
       { property: "og:description", content: "Solidarité, restauration, fraternité — au service du Mandé et au-delà." },
     ],
   }),
   component: HumanitairePage,
 });
 
-const local = [
-  { date: "12 Avril 2023", title: "Rénovation de la mosquée d'Ouézzindougou", text: "Restauration d'un lieu de culte emblématique, dans le respect de son héritage spirituel et culturel." },
-  { date: "1er Mai 2023", title: "Intervention à la pouponnière d'Ouézzindougou", text: "Soutien à l'orphelinat municipal — réaffirmation de l'engagement pour la protection de l'enfance." },
-  { date: "16 Avril 2024", title: "Action dans le village de Djoliba", text: "Soutien à la population locale, perpétuant l'esprit de fraternité et de responsabilité sociale." },
-  { date: "14 Avril 2024", title: "Distribution à Kangaba", text: "Présence officielle dans le berceau mythique du Mandé, dans la dignité et le respect des traditions." },
-  { date: "4 Mai 2025", title: "Action dans le village de Ntéguédo", text: "Aide significative aux familles les plus vulnérables, renforçant l'espoir et la cohésion communautaire." },
-  { date: "25 Décembre 2025", title: "Premier Arbre de la Paix en Afrique", text: "Symbole d'unité et de réconciliation planté en terre du Mandé." },
-];
-
-const international = [
-  { date: "30 Février 2022", title: "Action humanitaire aux Comores", text: "Soutien à des projets de développement, dans un esprit de solidarité africaine." },
-  { date: "14 Février 2023", title: "Action humanitaire au Ghana", text: "Soutien à la communauté musulmane sous l'égide de la Maison de Sewfi Obeng Mim." },
-  { date: "6 Mars 2024", title: "Action humanitaire au Liban", text: "Solidarité envers les populations affectées, fidèle aux idéaux d'unité hérités du Mâli." },
-];
-
 function HumanitairePage() {
+  const { lang, t } = useLang();
+  const local = getByCategory("humanitaire-local");
+  const intl = getByCategory("humanitaire-international");
+
   return (
     <div className="min-h-screen flex flex-col bg-ivory">
       <SiteHeader />
       <PageHero
-        eyebrow="Engagements"
-        title="Actions humanitaires"
-        subtitle="Au service du Mandé, des Mandeka et des peuples frères."
+        eyebrow={t("nav_humanitaire")}
+        title={lang === "fr" ? "Actions humanitaires" : "Humanitarian Actions"}
+        subtitle={lang === "fr" ? "Au service du Mandé, des Mandeka et des peuples frères." : "In service of Mandé, the Mandeka and brotherly peoples."}
       />
 
       <section className="py-20 px-6">
         <div className="mx-auto max-w-6xl">
-          <SectionTitle eyebrow="Au cœur du Mandé" title="Actions locales" />
+          <SectionTitle eyebrow={t("heart_mande")} title={t("local_actions")} />
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {local.map((a) => (
-              <ActionCard key={a.title} {...a} />
+              <ArticleCard
+                key={a.slug}
+                slug={a.slug}
+                date={pick(lang, a.date)}
+                title={pick(lang, a.title)}
+                excerpt={pick(lang, a.excerpt)}
+                imageLabel={a.imageLabel}
+              />
             ))}
           </div>
         </div>
@@ -60,10 +55,17 @@ function HumanitairePage() {
 
       <section className="py-20 px-6 bg-secondary/40">
         <div className="mx-auto max-w-6xl">
-          <SectionTitle eyebrow="Diplomatie & solidarité" title="Engagements internationaux" />
+          <SectionTitle eyebrow={t("diplomacy_solidarity")} title={t("intl_engagements")} />
           <div className="grid gap-8 md:grid-cols-3">
-            {international.map((a) => (
-              <ActionCard key={a.title} {...a} />
+            {intl.map((a) => (
+              <ArticleCard
+                key={a.slug}
+                slug={a.slug}
+                date={pick(lang, a.date)}
+                title={pick(lang, a.title)}
+                excerpt={pick(lang, a.excerpt)}
+                imageLabel={a.imageLabel}
+              />
             ))}
           </div>
         </div>
@@ -84,13 +86,38 @@ function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   );
 }
 
-function ActionCard({ date, title, text }: { date: string; title: string; text: string }) {
+export function ArticleCard({
+  slug,
+  date,
+  title,
+  excerpt,
+  imageLabel,
+}: {
+  slug: string;
+  date: string;
+  title: string;
+  excerpt: string;
+  imageLabel: string;
+}) {
+  const { t } = useLang();
   return (
-    <article className="border border-gold/30 bg-card p-8 hover:shadow-royal hover:border-gold transition-all">
-      <p className="font-display text-[0.7rem] tracking-[0.3em] uppercase text-gold">{date}</p>
-      <h3 className="mt-3 font-display text-xl text-burgundy-deep leading-snug">{title}</h3>
-      <div className="gold-rule my-4 w-12" />
-      <p className="text-muted-foreground text-[0.95rem]">{text}</p>
-    </article>
+    <Link
+      to="/article/$slug"
+      params={{ slug }}
+      className="group block bg-card border border-gold/30 hover:shadow-royal hover:border-gold transition-all hover-gold-frame"
+    >
+      <ImagePlaceholder label={imageLabel} aspect="aspect-[4/3]" />
+      <div className="p-7">
+        <p className="font-display text-[0.7rem] tracking-[0.3em] uppercase text-gold">{date}</p>
+        <h3 className="mt-3 font-display text-lg text-burgundy-deep leading-snug group-hover:text-burgundy transition-colors">
+          {title}
+        </h3>
+        <div className="gold-rule my-4 w-12" />
+        <p className="text-muted-foreground text-[0.95rem]">{excerpt}</p>
+        <p className="mt-5 font-display text-[0.7rem] tracking-[0.3em] uppercase text-gold">
+          {t("read_more")} →
+        </p>
+      </div>
+    </Link>
   );
 }
