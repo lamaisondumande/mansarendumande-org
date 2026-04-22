@@ -35,8 +35,9 @@ function HomePage() {
       {/* HERO */}
       <section className="relative h-[78vh] min-h-[560px] w-full overflow-hidden">
         <HeroPlaceholder label={lang === "fr" ? "Photographie principale" : "Main photograph"} />
-        <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep/85" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-ivory animate-fade-up">
+        <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep" />
+        <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-burgundy-deep via-burgundy-deep/85 to-transparent" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-start pt-24 md:pt-32 text-center px-6 text-ivory animate-fade-up">
           <img
             src={coatOfArmsHero}
             alt="Armoiries de la Maison du Mandé"
