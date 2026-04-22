@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { GoldRule, Ornament } from "@/components/Ornament";
 import { ImagePlaceholder, HeroPlaceholder } from "@/components/ImagePlaceholder";
 import coatOfArms from "@/assets/coat-of-arms.png";
+import coatOfArmsHero from "@/assets/coat-of-arms-hero.png";
 import { useLang, pick } from "@/lib/i18n";
 import { articles, getByCategory } from "@/data/articles";
 
@@ -36,7 +37,7 @@ function HomePage() {
         <HeroPlaceholder label={lang === "fr" ? "Photographie principale" : "Main photograph"} />
         <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep/85" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-ivory animate-fade-up">
-          <img src={coatOfArms} alt="" className="h-36 md:h-48 mb-8 coat-glow-hero" width={192} height={192} />
+          <img src={coatOfArmsHero} alt="Armoiries de la Maison du Mandé" className="h-48 md:h-64 lg:h-72 mb-8 coat-glow-hero" width={288} height={288} />
           <p className="font-display text-xs md:text-sm tracking-[0.45em] uppercase text-gold mb-4">
             {t("imperial_house")}
           </p>
