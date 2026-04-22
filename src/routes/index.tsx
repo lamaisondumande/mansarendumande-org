@@ -36,7 +36,7 @@ function HomePage() {
         <HeroPlaceholder label={lang === "fr" ? "Photographie principale" : "Main photograph"} />
         <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep/85" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-ivory animate-fade-up">
-          <img src={coatOfArms} alt="" className="h-24 md:h-32 mb-6 drop-shadow-2xl" width={128} height={128} />
+          <img src={coatOfArms} alt="" className="h-36 md:h-48 mb-8 coat-glow-hero" width={192} height={192} />
           <p className="font-display text-xs md:text-sm tracking-[0.45em] uppercase text-gold mb-4">
             {t("imperial_house")}
           </p>
