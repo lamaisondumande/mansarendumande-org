@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-4">
-            <img src={coatOfArms} alt="" className="h-16 w-16 object-contain" width={64} height={64} loading="lazy" />
+            <img src={coatOfArms} alt="" className="h-24 w-24 object-contain coat-glow" width={96} height={96} loading="lazy" />
             <div>
               <p className="font-display text-xl">La Maison du Mandé</p>
               <p className="italic text-ivory/70 text-sm">{t("tagline")}</p>
