@@ -28,13 +28,17 @@ export function ImagePlaceholder({
   );
 }
 
-export function HeroPlaceholder({ label = "Votre photographie principale" }: { label?: string }) {
+export function HeroPlaceholder({ label }: { label?: string }) {
+  void label;
   return (
     <div className="absolute inset-0 gradient-royal">
-      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 30% 30%, oklch(0.74 0.13 78 / 0.4), transparent 60%)" }} />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <p className="font-display text-[0.65rem] tracking-[0.4em] uppercase text-gold/60">{label}</p>
-      </div>
+      <div
+        className="absolute inset-0 opacity-25"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 30% 30%, oklch(0.74 0.13 78 / 0.45), transparent 60%), radial-gradient(circle at 70% 70%, oklch(0.74 0.13 78 / 0.25), transparent 55%)",
+        }}
+      />
     </div>
   );
 }

@@ -37,7 +37,11 @@ function HomePage() {
         <HeroPlaceholder label={lang === "fr" ? "Photographie principale" : "Main photograph"} />
         <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep/85" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-ivory animate-fade-up">
-          <img src={coatOfArmsHero} alt="Armoiries de la Maison du Mandé" className="h-48 md:h-64 lg:h-72 mb-8 coat-glow-hero" width={288} height={288} />
+          <img
+            src={coatOfArmsHero}
+            alt="Armoiries de la Maison du Mandé"
+            className="block mx-auto h-56 md:h-72 lg:h-80 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero"
+          />
           <p className="font-display text-xs md:text-sm tracking-[0.45em] uppercase text-gold mb-4">
             {t("imperial_house")}
           </p>
