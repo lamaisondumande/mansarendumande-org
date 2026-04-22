@@ -37,13 +37,13 @@ function HomePage() {
         <HeroPlaceholder label={lang === "fr" ? "Photographie principale" : "Main photograph"} />
         <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep" />
         <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-burgundy-deep via-burgundy-deep/85 to-transparent" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-start pt-24 md:pt-32 text-center px-6 text-ivory animate-fade-up">
+        <div className="relative z-10 h-full pt-24 md:pt-32 text-center px-6 text-ivory animate-fade-up items-center justify-end flex flex-col">
           <img
             src={coatOfArmsHero}
             alt="Armoiries de la Maison du Mandé"
-            className="block mx-auto h-56 md:h-72 lg:h-80 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero"
+            className="block mx-auto h-56 md:h-72 lg:h-80 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero font-semibold text-3xl"
           />
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-balance max-w-4xl leading-[1.05]">
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-balance max-w-4xl leading-[1.05] my-0">
             La Maison du Mandé
           </h1>
           <div className="mt-6 ornament-divider max-w-md w-full">
