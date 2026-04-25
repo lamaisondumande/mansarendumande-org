@@ -9,9 +9,12 @@ import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
+    if (params.slug === "naissance-empire-mali") {
+      return { article: null as any, isKirina: true as const };
+    }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article };
+    return { article, isKirina: false as const };
   },
   head: ({ loaderData }) => {
     const a = loaderData?.article;
