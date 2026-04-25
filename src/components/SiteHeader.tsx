@@ -26,7 +26,7 @@ export function SiteHeader() {
             <img
               src={coatOfArms}
               alt="Armoiries"
-              className="h-24 w-24 md:h-32 md:w-32 object-contain coat-glow transition-transform group-hover:scale-105"
+              className="h-28 w-28 md:h-40 md:w-40 object-contain coat-glow transition-transform group-hover:scale-105"
               width={1024}
               height={1024}
             />
