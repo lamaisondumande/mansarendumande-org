@@ -8,13 +8,27 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { lang, setLang, t } = useLang();
 
-  const nav = [
-    { to: "/" as const, label: t("nav_home"), hoverOnly: false },
-    { to: "/empire" as const, label: t("nav_empire"), hoverOnly: true },
-    { to: "/patrimoine" as const, label: t("nav_patrimoine"), hoverOnly: false },
-    { to: "/humanitaire" as const, label: t("nav_humanitaire"), hoverOnly: false },
-    { to: "/communication" as const, label: t("nav_communication"), hoverOnly: false },
-    { to: "/contact" as const, label: t("nav_contact"), hoverOnly: false },
+  type NavItem = {
+    to: "/" | "/empire" | "/patrimoine" | "/humanitaire" | "/communication" | "/contact";
+    label: string;
+    hoverOnly?: boolean;
+    children?: { to: "/empire"; label: string }[];
+  };
+
+  const nav: NavItem[] = [
+    { to: "/", label: t("nav_home") },
+    {
+      to: "/empire",
+      label: t("nav_empire"),
+      hoverOnly: true,
+      children: [
+        { to: "/empire", label: "La Bataille de Kirina — Naissance de l'Empire" },
+      ],
+    },
+    { to: "/patrimoine", label: t("nav_patrimoine") },
+    { to: "/humanitaire", label: t("nav_humanitaire") },
+    { to: "/communication", label: t("nav_communication") },
+    { to: "/contact", label: t("nav_contact") },
   ];
 
   return (
