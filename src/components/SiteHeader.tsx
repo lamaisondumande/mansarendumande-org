@@ -8,13 +8,27 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { lang, setLang, t } = useLang();
 
-  const nav = [
-    { to: "/" as const, label: t("nav_home"), hoverOnly: false },
-    { to: "/empire" as const, label: t("nav_empire"), hoverOnly: true },
-    { to: "/patrimoine" as const, label: t("nav_patrimoine"), hoverOnly: false },
-    { to: "/humanitaire" as const, label: t("nav_humanitaire"), hoverOnly: false },
-    { to: "/communication" as const, label: t("nav_communication"), hoverOnly: false },
-    { to: "/contact" as const, label: t("nav_contact"), hoverOnly: false },
+  type NavItem = {
+    to: "/" | "/empire" | "/patrimoine" | "/humanitaire" | "/communication" | "/contact";
+    label: string;
+    hoverOnly?: boolean;
+    children?: { to: "/empire"; label: string }[];
+  };
+
+  const nav: NavItem[] = [
+    { to: "/", label: t("nav_home") },
+    {
+      to: "/empire",
+      label: t("nav_empire"),
+      hoverOnly: true,
+      children: [
+        { to: "/empire", label: "La Bataille de Kirina — Naissance de l'Empire" },
+      ],
+    },
+    { to: "/patrimoine", label: t("nav_patrimoine") },
+    { to: "/humanitaire", label: t("nav_humanitaire") },
+    { to: "/communication", label: t("nav_communication") },
+    { to: "/contact", label: t("nav_contact") },
   ];
 
   return (
@@ -56,10 +70,10 @@ export function SiteHeader() {
       <nav className="hidden md:block gradient-royal">
         <ul className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-6">
           {nav.map((n) => (
-            <li key={n.to}>
+            <li key={n.to} className="relative group">
               {n.hoverOnly ? (
                 <span
-                  className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors cursor-default select-none"
+                  className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 group-hover:text-gold transition-colors cursor-default select-none"
                   aria-disabled="true"
                 >
                   {n.label}
@@ -74,6 +88,23 @@ export function SiteHeader() {
                   {n.label}
                 </Link>
               )}
+              {n.children && n.children.length > 0 && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full z-50 hidden group-hover:block pt-1">
+                  <ul className="min-w-[20rem] bg-burgundy-deep border border-gold/40 shadow-xl">
+                    {n.children.map((c) => (
+                      <li key={c.label}>
+                        <Link
+                          to={c.to}
+                          className="block px-5 py-3 font-display text-[0.75rem] tracking-[0.18em] uppercase text-ivory/90 hover:text-gold hover:bg-burgundy-deep/70 transition-colors"
+                          activeProps={{ className: "text-gold" }}
+                        >
+                          {c.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </li>
           ))}
         </ul>
@@ -86,7 +117,7 @@ export function SiteHeader() {
               <li key={n.to}>
                 {n.hoverOnly ? (
                   <span
-                    className="block py-3 font-display text-sm tracking-[0.2em] uppercase text-ivory/85 hover:text-gold border-b border-gold/15 cursor-default select-none"
+                    className="block py-3 font-display text-sm tracking-[0.2em] uppercase text-ivory/85 border-b border-gold/15 cursor-default select-none"
                     aria-disabled="true"
                   >
                     {n.label}
@@ -99,6 +130,21 @@ export function SiteHeader() {
                   >
                     {n.label}
                   </Link>
+                )}
+                {n.children && n.children.length > 0 && (
+                  <ul className="pl-4">
+                    {n.children.map((c) => (
+                      <li key={c.label}>
+                        <Link
+                          to={c.to}
+                          onClick={() => setOpen(false)}
+                          className="block py-2 font-display text-xs tracking-[0.18em] uppercase text-ivory/75 hover:text-gold border-b border-gold/10"
+                        >
+                          {c.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </li>
             ))}
