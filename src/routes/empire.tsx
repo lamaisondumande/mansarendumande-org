@@ -213,7 +213,7 @@ function EmpirePage() {
         </div>
       </section>
 
-      <Ornament className="my-4" />
+      
 
       {/* CONSÉQUENCES */}
       <section className="py-20 px-6">
