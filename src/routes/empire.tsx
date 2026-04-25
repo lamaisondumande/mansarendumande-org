@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { GoldRule, Ornament } from "@/components/Ornament";
+import { HeroPlaceholder } from "@/components/ImagePlaceholder";
 import heroKirina from "@/assets/empire/hero-kirina.jpg";
 import soundjataImg from "@/assets/empire/soundjata.jpg";
 import soumaoroImg from "@/assets/empire/soumaoro.png";
