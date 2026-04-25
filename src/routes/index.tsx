@@ -52,7 +52,7 @@ function HomePage() {
           <p className="mt-6 font-serif italic text-xl md:text-2xl text-ivory/90 max-w-2xl text-balance">
             {t("quote")}
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 mb-8">
             <Link
               to="/empire"
               className="font-display text-xs tracking-[0.3em] uppercase bg-gold text-burgundy-deep px-8 py-4 hover:bg-ivory transition-colors shadow-gold"
