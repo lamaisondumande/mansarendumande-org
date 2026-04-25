@@ -306,3 +306,30 @@ function EmpirePage() {
     </div>
   );
 }
+
+export function PageHero({
+  eyebrow,
+  title,
+  subtitle,
+}: {
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+}) {
+  return (
+    <section className="relative h-[55vh] min-h-[400px] w-full overflow-hidden">
+      <HeroPlaceholder label="Photographie de bannière" />
+      <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/50 via-burgundy-deep/30 to-burgundy-deep/80" />
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-ivory animate-fade-up">
+        <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">{eyebrow}</p>
+        <h1 className="mt-4 font-display text-5xl md:text-7xl text-balance max-w-4xl">{title}</h1>
+        {subtitle && (
+          <>
+            <div className="my-5 h-px w-24 bg-gold" />
+            <p className="font-serif italic text-lg md:text-xl text-ivory/90 max-w-2xl">{subtitle}</p>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
