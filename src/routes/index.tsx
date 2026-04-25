@@ -110,7 +110,7 @@ function HomePage() {
         <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-gold/5 blur-3xl" />
         <div className="mx-auto max-w-5xl relative">
           <div className="text-center mb-12">
-            <Ornament className="mb-8 [&_img]:h-80 md:[&_img]:h-[28rem] lg:[&_img]:h-[32rem]" />
+            <Ornament className="mb-8 [&_img]:h-80 md:[&_img]:h-[28rem] lg:[&_img]:h-[32rem] [&_img]:p-3 [&_img]:bg-burgundy-deep/5 [&_img]:ring-1 [&_img]:ring-burgundy-deep/40 [&_img]:shadow-[0_0_0_6px_hsl(var(--ivory)),0_0_0_7px_hsl(var(--burgundy-deep)/0.6),0_25px_50px_-12px_hsl(var(--burgundy-deep)/0.5)] [&_img]:rounded-sm" />
             <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">{t("speech")}</p>
             <h2 className="mt-4 font-display text-3xl md:text-5xl text-burgundy-deep text-balance">
               {t("presidents_message")}
