@@ -11,13 +11,13 @@ import consequencesImg from "@/assets/empire/consequences.jpg";
 export const Route = createFileRoute("/empire")({
   head: () => ({
     meta: [
-      { title: "L'Empire du Mâli — La bataille de Kirina | La Maison du Mandé" },
+      { title: "La Bataille de Kirina | La Maison du Mandé" },
       {
         name: "description",
         content:
-          "La bataille de Kirina (1235) et la fondation de l'Empire du Mâli : Soundiata Keïta face à Soumaoro Kanté, un tournant de l'histoire de l'Afrique de l'Ouest.",
+          "La bataille de Kirina (1235) : Soundiata Keïta face à Soumaoro Kanté, un tournant de l'histoire de l'Afrique de l'Ouest.",
       },
-      { property: "og:title", content: "L'Empire du Mâli — La bataille de Kirina" },
+      { property: "og:title", content: "La Bataille de Kirina" },
       {
         property: "og:description",
         content:
@@ -48,7 +48,7 @@ function EmpirePage() {
             12 avril 1235
           </p>
           <h1 className="mt-4 font-display text-4xl md:text-6xl text-balance max-w-5xl leading-tight">
-            La bataille de Kirina et la fondation de l'Empire du Mâli
+            La Bataille de Kirina
           </h1>
           <div className="my-5 h-px w-24 bg-gold" />
           <p className="font-serif italic text-lg md:text-xl text-ivory/90 max-w-3xl">
