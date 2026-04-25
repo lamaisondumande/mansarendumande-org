@@ -117,7 +117,7 @@ export function SiteHeader() {
               <li key={n.to}>
                 {n.hoverOnly ? (
                   <span
-                    className="block py-3 font-display text-sm tracking-[0.2em] uppercase text-ivory/85 hover:text-gold border-b border-gold/15 cursor-default select-none"
+                    className="block py-3 font-display text-sm tracking-[0.2em] uppercase text-ivory/85 border-b border-gold/15 cursor-default select-none"
                     aria-disabled="true"
                   >
                     {n.label}
@@ -130,6 +130,21 @@ export function SiteHeader() {
                   >
                     {n.label}
                   </Link>
+                )}
+                {n.children && n.children.length > 0 && (
+                  <ul className="pl-4">
+                    {n.children.map((c) => (
+                      <li key={c.label}>
+                        <Link
+                          to={c.to}
+                          onClick={() => setOpen(false)}
+                          className="block py-2 font-display text-xs tracking-[0.18em] uppercase text-ivory/75 hover:text-gold border-b border-gold/10"
+                        >
+                          {c.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </li>
             ))}
