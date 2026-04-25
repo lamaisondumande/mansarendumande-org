@@ -221,10 +221,8 @@ function HomePage() {
 
 const frMessage = [
   "Ce lien ancestral, tissé à travers les générations, incarne à la fois un devoir de mémoire et une responsabilité vivante : celle de préserver et de transmettre l'héritage des peuples du Mandé — un noble héritage, forgé par les idéaux et les valeurs qui ont façonné notre histoire commune.",
-  "Bien que l'Empire du Mâli, en tant qu'entité politique, ait disparu, son esprit perdure, incarné dans les institutions, les principes et les traditions qu'il nous a légués. Fidèle aux enseignements de Soundjata Keita, j'assume le rôle qui m'a été transmis par la lignée des souverains du Mandé.",
 ];
 
 const enMessage = [
   "This ancestral bond, woven through generations, embodies both a duty of memory and a living responsibility: that of preserving and transmitting the heritage of the Mandé peoples — a noble heritage, forged by the ideals and values that have shaped our common history.",
-  "Although the Empire of Mali, as a political entity, has disappeared, its spirit endures, embodied in the institutions, principles and traditions it has bequeathed to us. Faithful to the teachings of Sundiata Keita, I assume the role that has been passed down to me through the lineage of the sovereigns of Mandé.",
 ];
