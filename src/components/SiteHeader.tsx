@@ -9,12 +9,12 @@ export function SiteHeader() {
   const { lang, setLang, t } = useLang();
 
   const nav = [
-    { to: "/" as const, label: t("nav_home") },
-    { to: "/empire" as const, label: t("nav_empire") },
-    { to: "/patrimoine" as const, label: t("nav_patrimoine") },
-    { to: "/humanitaire" as const, label: t("nav_humanitaire") },
-    { to: "/communication" as const, label: t("nav_communication") },
-    { to: "/contact" as const, label: t("nav_contact") },
+    { to: "/" as const, label: t("nav_home"), hoverOnly: false },
+    { to: "/empire" as const, label: t("nav_empire"), hoverOnly: true },
+    { to: "/patrimoine" as const, label: t("nav_patrimoine"), hoverOnly: false },
+    { to: "/humanitaire" as const, label: t("nav_humanitaire"), hoverOnly: false },
+    { to: "/communication" as const, label: t("nav_communication"), hoverOnly: false },
+    { to: "/contact" as const, label: t("nav_contact"), hoverOnly: false },
   ];
 
   return (
@@ -57,14 +57,23 @@ export function SiteHeader() {
         <ul className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-6">
           {nav.map((n) => (
             <li key={n.to}>
-              <Link
-                to={n.to}
-                className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors"
-                activeProps={{ className: "text-gold" }}
-                activeOptions={{ exact: n.to === "/" }}
-              >
-                {n.label}
-              </Link>
+              {n.hoverOnly ? (
+                <span
+                  className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors cursor-default select-none"
+                  aria-disabled="true"
+                >
+                  {n.label}
+                </span>
+              ) : (
+                <Link
+                  to={n.to}
+                  className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors"
+                  activeProps={{ className: "text-gold" }}
+                  activeOptions={{ exact: n.to === "/" }}
+                >
+                  {n.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -75,13 +84,22 @@ export function SiteHeader() {
           <ul className="flex flex-col px-6 py-4">
             {nav.map((n) => (
               <li key={n.to}>
-                <Link
-                  to={n.to}
-                  onClick={() => setOpen(false)}
-                  className="block py-3 font-display text-sm tracking-[0.2em] uppercase text-ivory/85 hover:text-gold border-b border-gold/15"
-                >
-                  {n.label}
-                </Link>
+                {n.hoverOnly ? (
+                  <span
+                    className="block py-3 font-display text-sm tracking-[0.2em] uppercase text-ivory/85 hover:text-gold border-b border-gold/15 cursor-default select-none"
+                    aria-disabled="true"
+                  >
+                    {n.label}
+                  </span>
+                ) : (
+                  <Link
+                    to={n.to}
+                    onClick={() => setOpen(false)}
+                    className="block py-3 font-display text-sm tracking-[0.2em] uppercase text-ivory/85 hover:text-gold border-b border-gold/15"
+                  >
+                    {n.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
