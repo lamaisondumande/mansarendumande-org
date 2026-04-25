@@ -70,10 +70,10 @@ export function SiteHeader() {
       <nav className="hidden md:block gradient-royal">
         <ul className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-6">
           {nav.map((n) => (
-            <li key={n.to}>
+            <li key={n.to} className="relative group">
               {n.hoverOnly ? (
                 <span
-                  className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors cursor-default select-none"
+                  className="block px-5 py-4 font-display text-[0.78rem] tracking-[0.2em] uppercase text-ivory/85 group-hover:text-gold transition-colors cursor-default select-none"
                   aria-disabled="true"
                 >
                   {n.label}
@@ -87,6 +87,23 @@ export function SiteHeader() {
                 >
                   {n.label}
                 </Link>
+              )}
+              {n.children && n.children.length > 0 && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full z-50 hidden group-hover:block pt-1">
+                  <ul className="min-w-[20rem] bg-burgundy-deep border border-gold/40 shadow-xl">
+                    {n.children.map((c) => (
+                      <li key={c.label}>
+                        <Link
+                          to={c.to}
+                          className="block px-5 py-3 font-display text-[0.75rem] tracking-[0.18em] uppercase text-ivory/90 hover:text-gold hover:bg-burgundy-deep/70 transition-colors"
+                          activeProps={{ className: "text-gold" }}
+                        >
+                          {c.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </li>
           ))}
