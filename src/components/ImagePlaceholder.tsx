@@ -7,11 +7,20 @@ export function ImagePlaceholder({
   label = "Votre image ici",
   className = "",
   aspect = "aspect-[4/3]",
+  src,
 }: {
   label?: string;
   className?: string;
   aspect?: string;
+  src?: string;
 }) {
+  if (src) {
+    return (
+      <div className={`relative w-full ${aspect} overflow-hidden ${className}`}>
+        <img src={src} alt={label} className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+    );
+  }
   return (
     <div
       className={`relative w-full ${aspect} gradient-royal flex items-center justify-center overflow-hidden ${className}`}

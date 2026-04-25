@@ -5,6 +5,11 @@ import { GoldRule, Ornament } from "@/components/Ornament";
 import { ImagePlaceholder, HeroPlaceholder } from "@/components/ImagePlaceholder";
 import coatOfArms from "@/assets/coat-of-arms.png";
 import coatOfArmsHero from "@/assets/coat-of-arms-hero.png";
+import naissanceEmpireImg from "@/assets/naissance-empire-mali.jpg";
+
+const histoireImages: Record<string, string> = {
+  "naissance-empire-mali": naissanceEmpireImg,
+};
 import { useLang, pick } from "@/lib/i18n";
 import { articles, getByCategory } from "@/data/articles";
 
@@ -88,7 +93,7 @@ function HomePage() {
                 params={{ slug: p.slug }}
                 className="group block hover-gold-frame bg-card shadow-elegant transition-all duration-500 hover:-translate-y-2"
               >
-                <ImagePlaceholder label={p.imageLabel} aspect="aspect-[4/3]" />
+                <ImagePlaceholder label={p.imageLabel} aspect="aspect-[4/3]" src={histoireImages[p.slug]} />
                 <div className="p-8 text-center">
                   <h3 className="font-display text-xl text-burgundy-deep group-hover:text-burgundy transition-colors">
                     {pick(lang, p.title)}
