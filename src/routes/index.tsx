@@ -41,7 +41,7 @@ function HomePage() {
           <img
             src={coatOfArmsHero}
             alt="Armoiries de la Maison du Mandé"
-            className="block h-56 md:h-72 lg:h-80 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero font-semibold text-3xl mx-[2px]"
+            className="block h-56 md:h-72 lg:h-80 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero font-semibold text-3xl mx-px"
           />
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-balance max-w-4xl leading-[1.05] my-0">
             La Maison du Mandé
