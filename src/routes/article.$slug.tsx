@@ -17,6 +17,23 @@ export const Route = createFileRoute("/article/$slug")({
     return { article, isKirina: false as const };
   },
   head: ({ loaderData }) => {
+    if (loaderData?.isKirina) {
+      return {
+        meta: [
+          { title: "La Bataille de Kirina — Naissance de l'Empire | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "La bataille de Kirina (1235) : Soundiata Keïta face à Soumaoro Kanté, naissance de l'Empire du Mâli.",
+          },
+          { property: "og:title", content: "La Bataille de Kirina — Naissance de l'Empire" },
+          {
+            property: "og:description",
+            content: "1235 : Soundiata Keïta vainc Soumaoro Kanté à Kirina et fonde l'Empire du Mâli.",
+          },
+        ],
+      };
+    }
     const a = loaderData?.article;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
