@@ -72,8 +72,20 @@ function NotFoundArticle() {
 }
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
+  const data = Route.useLoaderData();
   const { lang, t } = useLang();
+
+  if (data.isKirina) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <KirinaContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  const article = data.article!;
 
   const title = pick(lang, article.title);
   const date = pick(lang, article.date);
