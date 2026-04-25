@@ -122,7 +122,6 @@ function EmpirePage() {
         </div>
       </section>
 
-      <Ornament className="my-4" />
 
       {/* DÉROULEMENT + PORTRAITS */}
       <section className="py-20 px-6 bg-secondary/40">
