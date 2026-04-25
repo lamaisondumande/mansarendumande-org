@@ -3,7 +3,7 @@ import divider from "@/assets/divider.png";
 export function Ornament({ className = "" }: { className?: string }) {
   return (
     <div className={`flex justify-center ${className}`}>
-      <img src={divider} alt="" className="h-32 md:h-48 w-auto object-contain opacity-90 mx-auto" width={854} height={1022} loading="lazy" />
+      <img src={divider} alt="" className="h-56 md:h-80 w-auto object-contain opacity-90 mx-auto" width={854} height={1022} loading="lazy" />
     </div>
   );
 }
