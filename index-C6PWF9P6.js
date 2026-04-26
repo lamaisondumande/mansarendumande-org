@@ -1,0 +1,112 @@
+import { jsxs, jsx } from "react/jsx-runtime";
+import { Link } from "@tanstack/react-router";
+import { S as SiteHeader, c as coatOfArms, a as SiteFooter } from "./SiteFooter-BSYGsU_L.js";
+import { G as GoldRule, O as Ornament } from "./Ornament-DYI3V4MA.js";
+import { u as useLang, g as getByCategory, a as articles, H as HeroPlaceholder, I as ImagePlaceholder, p as pick } from "./router-BwBGjASB.js";
+import "react";
+import "lucide-react";
+const coatOfArmsHero = "/assets/coat-of-arms-hero-DrXunLX0.png";
+const naissanceEmpireImg = "/assets/naissance-empire-mali-CPOFO0EC.jpg";
+const histoireImages = {
+  "naissance-empire-mali": naissanceEmpireImg
+};
+function HomePage() {
+  const {
+    lang,
+    t
+  } = useLang();
+  const histoire = getByCategory("histoire");
+  const news = articles.filter((a) => a.category !== "histoire").slice(-3).reverse();
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen flex flex-col bg-ivory", children: [
+    /* @__PURE__ */ jsx(SiteHeader, {}),
+    /* @__PURE__ */ jsxs("section", { className: "relative h-[78vh] min-h-[560px] w-full overflow-hidden", children: [
+      /* @__PURE__ */ jsx(HeroPlaceholder, { label: lang === "fr" ? "Photographie principale" : "Main photograph" }),
+      /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep" }),
+      /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-burgundy-deep via-burgundy-deep/85 to-transparent" }),
+      /* @__PURE__ */ jsxs("div", { className: "relative z-10 h-full pt-56 md:pt-72 text-center px-6 text-ivory animate-fade-up items-center justify-end flex flex-col", children: [
+        /* @__PURE__ */ jsx("img", { src: coatOfArmsHero, alt: "Armoiries de la Maison du Mandé", className: "block h-48 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero mx-px" }),
+        /* @__PURE__ */ jsx("h1", { className: "font-display text-5xl md:text-7xl lg:text-8xl text-balance max-w-4xl leading-[1.05] my-0", children: "La Maison du Mandé" }),
+        /* @__PURE__ */ jsx("div", { className: "mt-6 ornament-divider max-w-md w-full", children: /* @__PURE__ */ jsx("span", { className: "font-display text-gold text-xs tracking-[0.4em]", children: "✦" }) }),
+        /* @__PURE__ */ jsx("p", { className: "mt-6 font-serif italic text-xl md:text-2xl text-ivory/90 max-w-2xl text-balance", children: t("quote") }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-6 flex flex-wrap items-center justify-center gap-4 mb-8", children: [
+          /* @__PURE__ */ jsx(Link, { to: "/empire", className: "font-display text-xs tracking-[0.3em] uppercase bg-gold text-burgundy-deep px-8 py-4 hover:bg-ivory transition-colors shadow-gold", children: t("discover_empire") }),
+          /* @__PURE__ */ jsx(Link, { to: "/humanitaire", className: "font-display text-xs tracking-[0.3em] uppercase border border-gold/80 text-ivory px-8 py-4 hover:bg-gold hover:text-burgundy-deep transition-colors", children: t("our_engagements") })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx("section", { className: "py-24 px-6", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto max-w-7xl", children: [
+      /* @__PURE__ */ jsxs("div", { className: "text-center mb-16", children: [
+        /* @__PURE__ */ jsx("p", { className: "font-display text-xs tracking-[0.4em] uppercase text-gold", children: t("living_memory") }),
+        /* @__PURE__ */ jsx("h2", { className: "mt-4 font-display text-4xl md:text-5xl text-burgundy-deep", children: t("sources_mande") }),
+        /* @__PURE__ */ jsx(GoldRule, { className: "mt-6" })
+      ] }),
+      /* @__PURE__ */ jsx("div", { className: "grid gap-10 md:grid-cols-3", children: histoire.map((p) => /* @__PURE__ */ jsxs(Link, { to: "/article/$slug", params: {
+        slug: p.slug
+      }, className: "group block hover-gold-frame bg-card shadow-elegant transition-all duration-500 hover:-translate-y-2", children: [
+        /* @__PURE__ */ jsx(ImagePlaceholder, { label: p.imageLabel, aspect: "aspect-[4/3]", src: histoireImages[p.slug] }),
+        /* @__PURE__ */ jsxs("div", { className: "p-8 text-center", children: [
+          /* @__PURE__ */ jsx("h3", { className: "font-display text-xl text-burgundy-deep group-hover:text-burgundy transition-colors", children: pick(lang, p.title) }),
+          /* @__PURE__ */ jsx("div", { className: "gold-rule my-4 w-16 mx-auto" }),
+          /* @__PURE__ */ jsx("p", { className: "text-muted-foreground text-[0.95rem]", children: pick(lang, p.excerpt) }),
+          /* @__PURE__ */ jsxs("p", { className: "mt-5 font-display text-[0.7rem] tracking-[0.3em] uppercase text-gold", children: [
+            t("read_more"),
+            " →"
+          ] })
+        ] })
+      ] }, p.slug)) })
+    ] }) }),
+    /* @__PURE__ */ jsxs("section", { className: "py-24 px-6 bg-secondary/40 relative overflow-hidden", children: [
+      /* @__PURE__ */ jsx("div", { className: "absolute -top-20 -right-20 w-96 h-96 rounded-full bg-gold/5 blur-3xl" }),
+      /* @__PURE__ */ jsxs("div", { className: "mx-auto max-w-5xl relative", children: [
+        /* @__PURE__ */ jsxs("div", { className: "text-center mb-12", children: [
+          /* @__PURE__ */ jsx(Ornament, { className: "mb-8 [&_img]:h-80 md:[&_img]:h-[28rem] lg:[&_img]:h-[32rem] [&_img]:p-4 [&_img]:border-4 [&_img]:border-burgundy-deep [&_img]:rounded-sm [&_img]:shadow-[0_20px_40px_-15px_hsl(var(--burgundy-deep)/0.6)]" }),
+          /* @__PURE__ */ jsx("p", { className: "font-display text-xs tracking-[0.4em] uppercase text-gold", children: t("speech") }),
+          /* @__PURE__ */ jsx("h2", { className: "mt-4 font-display text-3xl md:text-5xl text-burgundy-deep text-balance", children: t("presidents_message") }),
+          /* @__PURE__ */ jsx(GoldRule, { className: "mt-6" })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "font-serif text-foreground/90 space-y-6 leading-[1.85] text-lg text-justify", children: (lang === "fr" ? frMessage : enMessage).map((p, i) => /* @__PURE__ */ jsx("p", { className: i === 0 ? "first-letter:font-display first-letter:text-7xl first-letter:float-left first-letter:mr-3 first-letter:mt-2 first-letter:leading-none first-letter:text-burgundy" : "", children: p }, i)) }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-12 text-center", children: [
+          /* @__PURE__ */ jsx(GoldRule, {}),
+          /* @__PURE__ */ jsx("p", { className: "mt-6 font-display text-burgundy-deep", children: lang === "fr" ? "S.A.I. Le Mansaren Hashim Keita du Mandé" : "H.I.H. The Mansaren Hashim Keita of Mandé" }),
+          /* @__PURE__ */ jsx("p", { className: "text-sm italic text-muted-foreground", children: lang === "fr" ? "14 Janvier 2024" : "January 14, 2024" })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx("section", { className: "py-24 px-6", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto max-w-7xl", children: [
+      /* @__PURE__ */ jsxs("div", { className: "text-center mb-16", children: [
+        /* @__PURE__ */ jsx("p", { className: "font-display text-xs tracking-[0.4em] uppercase text-gold", children: t("news") }),
+        /* @__PURE__ */ jsx("h2", { className: "mt-4 font-display text-4xl md:text-5xl text-burgundy-deep", children: t("recent_releases") }),
+        /* @__PURE__ */ jsx(GoldRule, { className: "mt-6" })
+      ] }),
+      /* @__PURE__ */ jsx("div", { className: "grid gap-8 md:grid-cols-3", children: news.map((n) => /* @__PURE__ */ jsxs(Link, { to: "/article/$slug", params: {
+        slug: n.slug
+      }, className: "block border border-gold/30 bg-card p-8 transition-all hover:shadow-royal hover:border-gold", children: [
+        /* @__PURE__ */ jsx("p", { className: "font-display text-[0.7rem] tracking-[0.3em] uppercase text-gold", children: pick(lang, n.date) }),
+        /* @__PURE__ */ jsx("h3", { className: "mt-4 font-display text-xl text-burgundy-deep leading-snug", children: pick(lang, n.title) }),
+        /* @__PURE__ */ jsx("div", { className: "gold-rule my-5 w-12" }),
+        /* @__PURE__ */ jsx("p", { className: "text-muted-foreground text-[0.95rem]", children: pick(lang, n.excerpt) })
+      ] }, n.slug)) }),
+      /* @__PURE__ */ jsx("div", { className: "mt-14 text-center", children: /* @__PURE__ */ jsx(Link, { to: "/communication", className: "inline-block font-display text-xs tracking-[0.3em] uppercase border border-burgundy text-burgundy-deep px-8 py-4 hover:bg-burgundy-deep hover:text-ivory transition-colors", children: t("all_news") }) })
+    ] }) }),
+    /* @__PURE__ */ jsxs("section", { className: "relative py-24 px-6 gradient-royal text-ivory text-center overflow-hidden", children: [
+      /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-10", style: {
+        backgroundImage: `url(${coatOfArms})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "contain"
+      } }),
+      /* @__PURE__ */ jsxs("div", { className: "relative max-w-3xl mx-auto", children: [
+        /* @__PURE__ */ jsx("p", { className: "font-display text-xs tracking-[0.4em] uppercase text-gold", children: t("engagement") }),
+        /* @__PURE__ */ jsx("h2", { className: "mt-4 font-display text-4xl md:text-5xl text-balance", children: t("preserve_transmit") }),
+        /* @__PURE__ */ jsx("p", { className: "mt-6 font-serif italic text-xl text-ivory/85", children: t("join_us") }),
+        /* @__PURE__ */ jsx(Link, { to: "/contact", className: "inline-block mt-10 font-display text-xs tracking-[0.3em] uppercase bg-gold text-burgundy-deep px-10 py-4 hover:bg-ivory transition-colors shadow-gold", children: t("enter_correspondence") })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx(SiteFooter, {})
+  ] });
+}
+const frMessage = ["Ce lien ancestral, tissé au fil des générations, incarne à la fois un devoir de mémoire et une responsabilité vivante : celle de préserver et de transmettre l’héritage des peuples du Mandé, un héritage noble, forgé par les idéaux et les valeurs qui ont façonné notre histoire commune. Bien que l’Empire du Mâli, en tant qu'entité politique, ait disparu, son esprit demeure, incarné dans les institutions, les principes et les traditions qu’il nous a légués. Fidèle aux enseignements de Soundjata Keita et aux volontés exprimées par les anciens, j’assume le rôle qui m’a été transmis par la lignée des souverains du Mandé, en accord avec les traditions coutumières. La dynastie Keita, dans sa richesse historique, a vu émerger plusieurs branches au fil des siècles. C’est au sein de sa lignée aînée, telle que reconnue par la tradition du Mandé, que s’inscrit la présente continuité dynastique, que j’ai reçu mission de faire vivre avec fidélité et responsabilité. Je m’engage à préserver l’essence de cet héritage, pour le servir et le faire rayonner dans notre époque.", " ", "Cette charge, que j’assume avec humilité, consiste à valoriser, protéger, préserver et incarner, en pensée comme en actes, la continuité impériale du Mâli, en œuvrant au service des valeurs de justice, de fraternité et de solidarité qui ont toujours guidé nos ancêtres. Parvenu à son apogée sous des souverains tels que Soundjata Keita et Mansa Moussa, l’Empire du Mâli a profondément marqué l’histoire de l’Afrique de l’Ouest. Issu de la sagesse politique des peuples du Mandé, telle qu’exprimée dans la Charte du Kurukan Fuga adoptée en 1236, il s’est élevé par l’unité, la tolérance, la prospérité et le respect des traditions. Mais comme toute grande civilisation, il a connu le déclin, affaibli par des tensions internes et des agressions extérieures, malgré la conduite courageuse du dernier Mansa régnant, Mahmud IV Keita, qui œuvra à préserver l’intégrité impériale face aux menaces extérieures jusqu'en 1610.", "​", `L'Empire perdure dans les cultures, les mémoires et les engagements de celles et ceux qui, aujourd’hui, voient dans cet héritage une source profonde d’inspiration et de responsabilité. Il a semé une œuvre impérissable : la diffusion pacifique de l’islam, un commerce florissant, et une culture éclatante, riche d’art, de savoirs et d’humanisme. La Maison du Mandé, forte de femmes et d’hommes venus d’horizons variés, de toutes origines, confessions et croyances, incarne aujourd’hui cette flamme. Elle prolonge, dans la diversité et l’humilité, les idéaux impériaux. Elle œuvre pour l’unité culturelle, la transmission historique et la solidarité entre les peuples du Mandé. Ce site est dédié à cette mission : préserver et transmettre les valeurs impériales du Mandé à travers l’histoire, l’art, la culture et la philanthropie. Il est une invitation à redécouvrir notre passé commun pour mieux bâtir, ensemble, un avenir digne de l’héritage impérial du Mâli. "`];
+const enMessage = ["This ancestral bond, woven through generations, embodies both a duty of memory and a living responsibility: that of preserving and transmitting the heritage of the Mandé peoples — a noble heritage, forged by the ideals and values that have shaped our common history."];
+export {
+  HomePage as component
+};
