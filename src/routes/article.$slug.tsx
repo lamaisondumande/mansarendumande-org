@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { GoldRule, Ornament } from "@/components/Ornament";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { KirinaContent } from "@/components/KirinaContent";
+import { EmpireContent } from "@/routes/empire";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -11,11 +12,14 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const };
+    }
+    if (params.slug === "empire-mali-manden") {
+      return { article: null as any, isKirina: false as const, isEmpire: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
@@ -35,7 +39,25 @@ export const Route = createFileRoute("/article/$slug")({
         ],
       };
     }
-    const a = loaderData?.article;
+    if (loaderData?.isEmpire) {
+      return {
+        meta: [
+          { title: "L'Empire du Mâli ou Empire du Manden | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "Histoire de l'Empire du Mâli : ses débuts, son apogée sous Mansa Moussa, Tombouctou, son étendue territoriale, ses villes et son déclin.",
+          },
+          { property: "og:title", content: "L'Empire du Mâli ou Empire du Manden" },
+          {
+            property: "og:description",
+            content:
+              "Des origines mandingues à l'apogée de Mansa Moussa : l'histoire complète de l'un des plus vastes empires médiévaux du monde.",
+          },
+        ],
+      };
+    }
+    const a = loaderData?.article as { title: { fr: string }; excerpt: { fr: string } } | null | undefined;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
       meta: [
@@ -86,7 +108,17 @@ function ArticlePage() {
     );
   }
 
-  const article = data.article!;
+  if (data.isEmpire) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <EmpireContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  const article = data.article! as import("@/data/articles").Article;
 
   const title = pick(lang, article.title);
   const date = pick(lang, article.date);

@@ -55,7 +55,15 @@ function EmpirePage() {
   return (
     <div className="min-h-screen flex flex-col bg-ivory">
       <SiteHeader />
+      <EmpireContent />
+      <SiteFooter />
+    </div>
+  );
+}
 
+export function EmpireContent() {
+  return (
+    <>
       {/* HERO */}
       <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
         <img
@@ -639,8 +647,7 @@ function EmpirePage() {
         </div>
       </section>
 
-      <SiteFooter />
-    </div>
+    </>
   );
 }
 
