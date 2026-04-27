@@ -39,7 +39,25 @@ export const Route = createFileRoute("/article/$slug")({
         ],
       };
     }
-    const a = loaderData?.article;
+    if (loaderData?.isEmpire) {
+      return {
+        meta: [
+          { title: "L'Empire du Mâli ou Empire du Manden | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "Histoire de l'Empire du Mâli : ses débuts, son apogée sous Mansa Moussa, Tombouctou, son étendue territoriale, ses villes et son déclin.",
+          },
+          { property: "og:title", content: "L'Empire du Mâli ou Empire du Manden" },
+          {
+            property: "og:description",
+            content:
+              "Des origines mandingues à l'apogée de Mansa Moussa : l'histoire complète de l'un des plus vastes empires médiévaux du monde.",
+          },
+        ],
+      };
+    }
+    const a = loaderData?.article as { title: { fr: string }; excerpt: { fr: string } } | null | undefined;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
       meta: [
