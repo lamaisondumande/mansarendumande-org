@@ -647,8 +647,7 @@ export function EmpireContent() {
         </div>
       </section>
 
-      <SiteFooter />
-    </div>
+    </>
   );
 }
 
