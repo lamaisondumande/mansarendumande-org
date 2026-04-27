@@ -108,7 +108,17 @@ function ArticlePage() {
     );
   }
 
-  const article = data.article!;
+  if (data.isEmpire) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <EmpireContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  const article = data.article! as import("@/data/articles").Article;
 
   const title = pick(lang, article.title);
   const date = pick(lang, article.date);
