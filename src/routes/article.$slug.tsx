@@ -5,6 +5,7 @@ import { GoldRule, Ornament } from "@/components/Ornament";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { KirinaContent } from "@/components/KirinaContent";
 import { EmpireContent } from "@/routes/empire";
+import { CapitalesContent } from "@/components/CapitalesContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -12,14 +13,17 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const, isEmpire: false as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const };
     }
     if (params.slug === "empire-mali-manden") {
-      return { article: null as any, isKirina: false as const, isEmpire: true as const };
+      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const };
+    }
+    if (params.slug === "capitales-imperiales") {
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const, isEmpire: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
@@ -53,6 +57,24 @@ export const Route = createFileRoute("/article/$slug")({
             property: "og:description",
             content:
               "Des origines mandingues à l'apogée de Mansa Moussa : l'histoire complète de l'un des plus vastes empires médiévaux du monde.",
+          },
+        ],
+      };
+    }
+    if (loaderData?.isCapitales) {
+      return {
+        meta: [
+          { title: "Les Capitales de l'Empire du Mâli | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "Kangaba, Niani, Dakadjalan, Kouroussa : étude historique, archéologique et critique des capitales successives de l'Empire du Mâli.",
+          },
+          { property: "og:title", content: "Les Capitales de l'Empire du Mâli" },
+          {
+            property: "og:description",
+            content:
+              "De Kangaba à Niani, une plongée dans les capitales successives et itinérantes de l'Empire du Mâli.",
           },
         ],
       };
@@ -113,6 +135,16 @@ function ArticlePage() {
       <div className="min-h-screen flex flex-col bg-ivory">
         <SiteHeader />
         <EmpireContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  if (data.isCapitales) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <CapitalesContent />
         <SiteFooter />
       </div>
     );
