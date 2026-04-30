@@ -140,6 +140,16 @@ function ArticlePage() {
     );
   }
 
+  if (data.isCapitales) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <CapitalesContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
   const article = data.article! as import("@/data/articles").Article;
 
   const title = pick(lang, article.title);
