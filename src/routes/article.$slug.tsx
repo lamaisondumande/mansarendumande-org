@@ -13,14 +13,17 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const, isEmpire: false as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const };
     }
     if (params.slug === "empire-mali-manden") {
-      return { article: null as any, isKirina: false as const, isEmpire: true as const };
+      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const };
+    }
+    if (params.slug === "capitales-imperiales") {
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const, isEmpire: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
