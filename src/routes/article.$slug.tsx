@@ -61,6 +61,24 @@ export const Route = createFileRoute("/article/$slug")({
         ],
       };
     }
+    if (loaderData?.isCapitales) {
+      return {
+        meta: [
+          { title: "Les Capitales de l'Empire du Mâli | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "Kangaba, Niani, Dakadjalan, Kouroussa : étude historique, archéologique et critique des capitales successives de l'Empire du Mâli.",
+          },
+          { property: "og:title", content: "Les Capitales de l'Empire du Mâli" },
+          {
+            property: "og:description",
+            content:
+              "De Kangaba à Niani, une plongée dans les capitales successives et itinérantes de l'Empire du Mâli.",
+          },
+        ],
+      };
+    }
     const a = loaderData?.article as { title: { fr: string }; excerpt: { fr: string } } | null | undefined;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
