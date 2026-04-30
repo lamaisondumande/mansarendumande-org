@@ -5,6 +5,7 @@ import { GoldRule, Ornament } from "@/components/Ornament";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { KirinaContent } from "@/components/KirinaContent";
 import { EmpireContent } from "@/routes/empire";
+import { CapitalesContent } from "@/components/CapitalesContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
