@@ -6,6 +6,7 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { KirinaContent } from "@/components/KirinaContent";
 import { EmpireContent } from "@/routes/empire";
 import { CapitalesContent } from "@/components/CapitalesContent";
+import { PatrimoineArchitecturalContent } from "@/components/PatrimoineArchitecturalContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -13,17 +14,20 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
     }
     if (params.slug === "empire-mali-manden") {
-      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const };
     }
     if (params.slug === "capitales-imperiales") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const };
+    }
+    if (params.slug === "patrimoine-architectural-immateriel") {
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
