@@ -109,7 +109,8 @@ export function SiteHeader() {
                     {n.children.map((c) => (
                       <li key={c.label}>
                         <Link
-                          to={c.to}
+                          to={c.to as any}
+                          params={c.params as any}
                           className="block px-5 py-3 font-display text-[0.75rem] tracking-[0.18em] uppercase text-ivory/90 hover:text-gold hover:bg-burgundy-deep/70 transition-colors"
                           activeProps={{ className: "text-gold" }}
                         >
@@ -151,7 +152,8 @@ export function SiteHeader() {
                     {n.children.map((c) => (
                       <li key={c.label}>
                         <Link
-                          to={c.to}
+                          to={c.to as any}
+                          params={c.params as any}
                           onClick={() => setOpen(false)}
                           className="block py-2 font-display text-xs tracking-[0.18em] uppercase text-ivory/75 hover:text-gold border-b border-gold/10"
                         >
