@@ -6,6 +6,7 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { KirinaContent } from "@/components/KirinaContent";
 import { EmpireContent } from "@/routes/empire";
 import { CapitalesContent } from "@/components/CapitalesContent";
+import { PatrimoineArchitecturalContent } from "@/components/PatrimoineArchitecturalContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -13,17 +14,20 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
     }
     if (params.slug === "empire-mali-manden") {
-      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const };
     }
     if (params.slug === "capitales-imperiales") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const };
+    }
+    if (params.slug === "patrimoine-architectural-immateriel") {
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
@@ -75,6 +79,24 @@ export const Route = createFileRoute("/article/$slug")({
             property: "og:description",
             content:
               "De Kangaba à Niani, une plongée dans les capitales successives et itinérantes de l'Empire du Mâli.",
+          },
+        ],
+      };
+    }
+    if (loaderData?.isPatrimoineArchi) {
+      return {
+        meta: [
+          { title: "Patrimoine Architectural et Immatériel | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "L'architecture soudanaise de l'Empire du Mâli et le patrimoine culturel matériel et immatériel inscrit à l'UNESCO : Djenné, Tombouctou, Kamablon, Kurukan Fuga, Charte du Mandé.",
+          },
+          { property: "og:title", content: "Patrimoine Architectural et Immatériel" },
+          {
+            property: "og:description",
+            content:
+              "Mosquées soudano-sahéliennes, Kamablon de Kangaba, plaine de Kurukan Fuga et Charte du Mandé — héritage vivant de l'Empire du Mâli.",
           },
         ],
       };
@@ -145,6 +167,16 @@ function ArticlePage() {
       <div className="min-h-screen flex flex-col bg-ivory">
         <SiteHeader />
         <CapitalesContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  if (data.isPatrimoineArchi) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <PatrimoineArchitecturalContent />
         <SiteFooter />
       </div>
     );

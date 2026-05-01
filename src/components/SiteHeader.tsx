@@ -8,11 +8,16 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { lang, setLang, t } = useLang();
 
+  type NavChild = {
+    to: "/empire" | "/article/$slug";
+    params?: { slug: string };
+    label: string;
+  };
   type NavItem = {
     to: "/" | "/empire" | "/patrimoine" | "/humanitaire" | "/communication" | "/contact";
     label: string;
     hoverOnly?: boolean;
-    children?: { to: "/empire"; label: string }[];
+    children?: NavChild[];
   };
 
   const nav: NavItem[] = [
@@ -25,7 +30,17 @@ export function SiteHeader() {
         { to: "/empire", label: "La Bataille de Kirina — Naissance de l'Empire" },
       ],
     },
-    { to: "/patrimoine", label: t("nav_patrimoine") },
+    {
+      to: "/patrimoine",
+      label: t("nav_patrimoine"),
+      children: [
+        {
+          to: "/article/$slug",
+          params: { slug: "patrimoine-architectural-immateriel" },
+          label: "Patrimoine Architectural et Immatériel",
+        },
+      ],
+    },
     { to: "/humanitaire", label: t("nav_humanitaire") },
     { to: "/communication", label: t("nav_communication") },
     { to: "/contact", label: t("nav_contact") },
@@ -94,7 +109,8 @@ export function SiteHeader() {
                     {n.children.map((c) => (
                       <li key={c.label}>
                         <Link
-                          to={c.to}
+                          to={c.to as any}
+                          params={c.params as any}
                           className="block px-5 py-3 font-display text-[0.75rem] tracking-[0.18em] uppercase text-ivory/90 hover:text-gold hover:bg-burgundy-deep/70 transition-colors"
                           activeProps={{ className: "text-gold" }}
                         >
@@ -136,7 +152,8 @@ export function SiteHeader() {
                     {n.children.map((c) => (
                       <li key={c.label}>
                         <Link
-                          to={c.to}
+                          to={c.to as any}
+                          params={c.params as any}
                           onClick={() => setOpen(false)}
                           className="block py-2 font-display text-xs tracking-[0.18em] uppercase text-ivory/75 hover:text-gold border-b border-gold/10"
                         >
