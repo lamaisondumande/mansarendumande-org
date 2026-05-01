@@ -83,6 +83,24 @@ export const Route = createFileRoute("/article/$slug")({
         ],
       };
     }
+    if (loaderData?.isPatrimoineArchi) {
+      return {
+        meta: [
+          { title: "Patrimoine Architectural et Immatériel | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "L'architecture soudanaise de l'Empire du Mâli et le patrimoine culturel matériel et immatériel inscrit à l'UNESCO : Djenné, Tombouctou, Kamablon, Kurukan Fuga, Charte du Mandé.",
+          },
+          { property: "og:title", content: "Patrimoine Architectural et Immatériel" },
+          {
+            property: "og:description",
+            content:
+              "Mosquées soudano-sahéliennes, Kamablon de Kangaba, plaine de Kurukan Fuga et Charte du Mandé — héritage vivant de l'Empire du Mâli.",
+          },
+        ],
+      };
+    }
     const a = loaderData?.article as { title: { fr: string }; excerpt: { fr: string } } | null | undefined;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
