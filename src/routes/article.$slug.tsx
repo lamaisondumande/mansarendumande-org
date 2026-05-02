@@ -7,6 +7,7 @@ import { KirinaContent } from "@/components/KirinaContent";
 import { EmpireContent } from "@/routes/empire";
 import { CapitalesContent } from "@/components/CapitalesContent";
 import { PatrimoineArchitecturalContent } from "@/components/PatrimoineArchitecturalContent";
+import { AideHumanitaireMandeContent } from "@/components/AideHumanitaireMandeContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -14,20 +15,23 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
     }
     if (params.slug === "empire-mali-manden") {
-      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
     }
     if (params.slug === "capitales-imperiales") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const, isAideMande: false as const };
     }
     if (params.slug === "patrimoine-architectural-immateriel") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const, isAideMande: false as const };
+    }
+    if (params.slug === "aide-humanitaire-mande") {
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
@@ -97,6 +101,24 @@ export const Route = createFileRoute("/article/$slug")({
             property: "og:description",
             content:
               "Mosquées soudano-sahéliennes, Kamablon de Kangaba, plaine de Kurukan Fuga et Charte du Mandé — héritage vivant de l'Empire du Mâli.",
+          },
+        ],
+      };
+    }
+    if (loaderData?.isAideMande) {
+      return {
+        meta: [
+          { title: "Aide humanitaire dans le Mandé | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "Actions humanitaires de la Maison du Mandé : mosquée et pouponnière de Ouézzindougou, Djoliba, Kangaba, Ntéguédo — solidarité, foi et devoir impérial.",
+          },
+          { property: "og:title", content: "Aide humanitaire dans le Mandé" },
+          {
+            property: "og:description",
+            content:
+              "Distributions, soutien aux orphelins, restauration de lieux sacrés : l'engagement de la Maison du Mandé auprès des villages mandeka.",
           },
         ],
       };
@@ -177,6 +199,16 @@ function ArticlePage() {
       <div className="min-h-screen flex flex-col bg-ivory">
         <SiteHeader />
         <PatrimoineArchitecturalContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  if (data.isAideMande) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <AideHumanitaireMandeContent />
         <SiteFooter />
       </div>
     );
