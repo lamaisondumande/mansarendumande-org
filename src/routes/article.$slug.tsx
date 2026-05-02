@@ -7,6 +7,7 @@ import { KirinaContent } from "@/components/KirinaContent";
 import { EmpireContent } from "@/routes/empire";
 import { CapitalesContent } from "@/components/CapitalesContent";
 import { PatrimoineArchitecturalContent } from "@/components/PatrimoineArchitecturalContent";
+import { AideHumanitaireMandeContent } from "@/components/AideHumanitaireMandeContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -23,11 +24,14 @@ export const Route = createFileRoute("/article/$slug")({
       return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const };
     }
     if (params.slug === "patrimoine-architectural-immateriel") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const, isAideMande: false as const };
+    }
+    if (params.slug === "aide-humanitaire-mande") {
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
