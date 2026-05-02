@@ -105,6 +105,24 @@ export const Route = createFileRoute("/article/$slug")({
         ],
       };
     }
+    if (loaderData?.isAideMande) {
+      return {
+        meta: [
+          { title: "Aide humanitaire dans le Mandé | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "Actions humanitaires de la Maison du Mandé : mosquée et pouponnière de Ouézzindougou, Djoliba, Kangaba, Ntéguédo — solidarité, foi et devoir impérial.",
+          },
+          { property: "og:title", content: "Aide humanitaire dans le Mandé" },
+          {
+            property: "og:description",
+            content:
+              "Distributions, soutien aux orphelins, restauration de lieux sacrés : l'engagement de la Maison du Mandé auprès des villages mandeka.",
+          },
+        ],
+      };
+    }
     const a = loaderData?.article as { title: { fr: string }; excerpt: { fr: string } } | null | undefined;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
@@ -181,6 +199,16 @@ function ArticlePage() {
       <div className="min-h-screen flex flex-col bg-ivory">
         <SiteHeader />
         <PatrimoineArchitecturalContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  if (data.isAideMande) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <AideHumanitaireMandeContent />
         <SiteFooter />
       </div>
     );
