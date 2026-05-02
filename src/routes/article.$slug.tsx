@@ -15,13 +15,13 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
     }
     if (params.slug === "empire-mali-manden") {
-      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
     }
     if (params.slug === "capitales-imperiales") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const, isAideMande: false as const };
     }
     if (params.slug === "patrimoine-architectural-immateriel") {
       return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const, isAideMande: false as const };
