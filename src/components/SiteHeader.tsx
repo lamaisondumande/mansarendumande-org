@@ -41,7 +41,17 @@ export function SiteHeader() {
         },
       ],
     },
-    { to: "/humanitaire", label: t("nav_humanitaire") },
+    {
+      to: "/humanitaire",
+      label: t("nav_humanitaire"),
+      children: [
+        {
+          to: "/article/$slug",
+          params: { slug: "aide-humanitaire-mande" },
+          label: "Aide humanitaire dans le Mandé",
+        },
+      ],
+    },
     { to: "/communication", label: t("nav_communication") },
     { to: "/contact", label: t("nav_contact") },
   ];
