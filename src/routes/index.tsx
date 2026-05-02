@@ -6,9 +6,11 @@ import { ImagePlaceholder, HeroPlaceholder } from "@/components/ImagePlaceholder
 import coatOfArms from "@/assets/coat-of-arms.png";
 import coatOfArmsHero from "@/assets/coat-of-arms-hero.png";
 import naissanceEmpireImg from "@/assets/naissance-empire-mali.jpg";
+import capitalesImperialesImg from "@/assets/capitales-imperiales.jpg";
 
 const histoireImages: Record<string, string> = {
   "naissance-empire-mali": naissanceEmpireImg,
+  "capitales-imperiales": capitalesImperialesImg,
 };
 import { useLang, pick } from "@/lib/i18n";
 import { articles, getByCategory } from "@/data/articles";
