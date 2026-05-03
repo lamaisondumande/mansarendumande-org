@@ -8,7 +8,7 @@ import { EmpireContent } from "@/routes/empire";
 import { CapitalesContent } from "@/components/CapitalesContent";
 import { PatrimoineArchitecturalContent } from "@/components/PatrimoineArchitecturalContent";
 import { AideHumanitaireMandeContent } from "@/components/AideHumanitaireMandeContent";
-import { EngagementsInternationauxContent } from "@/components/EngagementsInternationauxContent";
+
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -29,9 +29,6 @@ export const Route = createFileRoute("/article/$slug")({
     }
     if (params.slug === "aide-humanitaire-mande") {
       return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: true as const, isEngagementsInter: false as const };
-    }
-    if (params.slug === "engagements-internationaux") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const, isEngagementsInter: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
