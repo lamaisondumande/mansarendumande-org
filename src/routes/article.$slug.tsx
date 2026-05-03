@@ -8,6 +8,7 @@ import { EmpireContent } from "@/routes/empire";
 import { CapitalesContent } from "@/components/CapitalesContent";
 import { PatrimoineArchitecturalContent } from "@/components/PatrimoineArchitecturalContent";
 import { AideHumanitaireMandeContent } from "@/components/AideHumanitaireMandeContent";
+import { EngagementsInternationauxContent } from "@/components/EngagementsInternationauxContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
@@ -15,23 +16,26 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/article/$slug")({
   loader: ({ params }) => {
     if (params.slug === "naissance-empire-mali") {
-      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
+      return { article: null as any, isKirina: true as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const, isEngagementsInter: false as const };
     }
     if (params.slug === "empire-mali-manden") {
-      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: true as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const, isEngagementsInter: false as const };
     }
     if (params.slug === "capitales-imperiales") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const, isAideMande: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: true as const, isPatrimoineArchi: false as const, isAideMande: false as const, isEngagementsInter: false as const };
     }
     if (params.slug === "patrimoine-architectural-immateriel") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const, isAideMande: false as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: true as const, isAideMande: false as const, isEngagementsInter: false as const };
     }
     if (params.slug === "aide-humanitaire-mande") {
-      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: true as const };
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: true as const, isEngagementsInter: false as const };
+    }
+    if (params.slug === "engagements-internationaux") {
+      return { article: null as any, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const, isEngagementsInter: true as const };
     }
     const article = getArticle(params.slug);
     if (!article) throw notFound();
-    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const };
+    return { article, isKirina: false as const, isEmpire: false as const, isCapitales: false as const, isPatrimoineArchi: false as const, isAideMande: false as const, isEngagementsInter: false as const };
   },
   head: ({ loaderData }) => {
     if (loaderData?.isKirina) {
@@ -123,6 +127,24 @@ export const Route = createFileRoute("/article/$slug")({
         ],
       };
     }
+    if (loaderData?.isEngagementsInter) {
+      return {
+        meta: [
+          { title: "Engagements internationaux | La Maison du Mandé" },
+          {
+            name: "description",
+            content:
+              "Les actions internationales de la Maison du Mandé : Comores, Ghana, Liban — solidarité impériale au-delà des frontières.",
+          },
+          { property: "og:title", content: "Engagements internationaux" },
+          {
+            property: "og:description",
+            content:
+              "Comores, Ghana, Liban : la Maison du Mandé porte une solidarité humanitaire universelle inspirée de l'Empire du Mâli.",
+          },
+        ],
+      };
+    }
     const a = loaderData?.article as { title: { fr: string }; excerpt: { fr: string } } | null | undefined;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
@@ -209,6 +231,16 @@ function ArticlePage() {
       <div className="min-h-screen flex flex-col bg-ivory">
         <SiteHeader />
         <AideHumanitaireMandeContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  if (data.isEngagementsInter) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <EngagementsInternationauxContent />
         <SiteFooter />
       </div>
     );
