@@ -50,11 +50,6 @@ export function SiteHeader() {
           params: { slug: "aide-humanitaire-mande" },
           label: "Aide humanitaire dans le Mandé",
         },
-        {
-          to: "/article/$slug",
-          params: { slug: "engagements-internationaux" },
-          label: "Engagements internationaux",
-        },
       ],
     },
     { to: "/communication", label: t("nav_communication") },
