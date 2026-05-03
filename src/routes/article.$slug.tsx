@@ -8,6 +8,7 @@ import { EmpireContent } from "@/routes/empire";
 import { CapitalesContent } from "@/components/CapitalesContent";
 import { PatrimoineArchitecturalContent } from "@/components/PatrimoineArchitecturalContent";
 import { AideHumanitaireMandeContent } from "@/components/AideHumanitaireMandeContent";
+import { EngagementsInternationauxContent } from "@/components/EngagementsInternationauxContent";
 import { articles, getArticle } from "@/data/articles";
 import { useLang, pick } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
