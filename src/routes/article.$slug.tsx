@@ -236,6 +236,16 @@ function ArticlePage() {
     );
   }
 
+  if (data.isEngagementsInter) {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory">
+        <SiteHeader />
+        <EngagementsInternationauxContent />
+        <SiteFooter />
+      </div>
+    );
+  }
+
   const article = data.article! as import("@/data/articles").Article;
 
   const title = pick(lang, article.title);
