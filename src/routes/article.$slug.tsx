@@ -124,24 +124,6 @@ export const Route = createFileRoute("/article/$slug")({
         ],
       };
     }
-    if (loaderData?.isEngagementsInter) {
-      return {
-        meta: [
-          { title: "Engagements internationaux | La Maison du Mandé" },
-          {
-            name: "description",
-            content:
-              "Les actions internationales de la Maison du Mandé : Comores, Ghana, Liban — solidarité impériale au-delà des frontières.",
-          },
-          { property: "og:title", content: "Engagements internationaux" },
-          {
-            property: "og:description",
-            content:
-              "Comores, Ghana, Liban : la Maison du Mandé porte une solidarité humanitaire universelle inspirée de l'Empire du Mâli.",
-          },
-        ],
-      };
-    }
     const a = loaderData?.article as { title: { fr: string }; excerpt: { fr: string } } | null | undefined;
     if (!a) return { meta: [{ title: "Article" }] };
     return {
@@ -233,15 +215,6 @@ function ArticlePage() {
     );
   }
 
-  if (data.isEngagementsInter) {
-    return (
-      <div className="min-h-screen flex flex-col bg-ivory">
-        <SiteHeader />
-        <EngagementsInternationauxContent />
-        <SiteFooter />
-      </div>
-    );
-  }
 
   const article = data.article! as import("@/data/articles").Article;
 
