@@ -1,4 +1,2 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-export default defineConfig({
-  base: '/mansarendumande-org/',
-});
+export default defineConfig({});
