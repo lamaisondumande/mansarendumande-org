@@ -121,7 +121,7 @@ function HomePage() {
           <div className="text-center mb-12">
             <Ornament className="mb-8 [&_img]:h-80 md:[&_img]:h-[28rem] lg:[&_img]:h-[32rem] [&_img]:p-4 [&_img]:border-4 [&_img]:border-burgundy-deep [&_img]:rounded-sm [&_img]:shadow-[0_20px_40px_-15px_hsl(var(--burgundy-deep)/0.6)]" />
             <p className="font-display text-xs tracking-[0.4em] uppercase text-gold">{t("speech")}</p>
-            <h2 className="mt-4 font-display text-3xl md:text-5xl text-burgundy-deep text-balance">
+            <h2 className="mt-4 font-display text-2xl md:text-3xl lg:text-4xl text-burgundy-deep whitespace-nowrap">
               {t("presidents_message")}
             </h2>
             <GoldRule className="mt-6" />
