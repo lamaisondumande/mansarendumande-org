@@ -60,12 +60,12 @@ export function SiteHeader() {
     <header className="relative z-40 bg-ivory">
       <div className="h-1 gradient-royal" />
       <div className="border-b border-gold/30">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-6 md:py-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-2 md:py-3">
           <Link to="/" className="flex items-center gap-4 group">
             <img
               src={coatOfArms}
               alt="Armoiries"
-              className="h-28 w-28 md:h-40 md:w-40 object-contain coat-glow transition-transform group-hover:scale-105"
+              className="h-16 w-16 md:h-20 md:w-20 object-contain coat-glow transition-transform group-hover:scale-105"
               width={1024}
               height={1024}
             />
