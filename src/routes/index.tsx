@@ -52,9 +52,7 @@ function HomePage() {
             alt="Armoiries de la Maison du Mandé"
             className="block h-48 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero mx-px"
           />
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-balance max-w-4xl leading-[1.05] my-0">
-            La Maison du Mandé
-          </h1>
+          <h1 className="sr-only">La Maison du Mandé</h1>
           <div className="mt-6 ornament-divider max-w-md w-full">
             <span className="font-display text-gold text-xs tracking-[0.4em]">✦</span>
           </div>
