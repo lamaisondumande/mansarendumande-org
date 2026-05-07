@@ -46,29 +46,29 @@ function HomePage() {
         <HeroPlaceholder label={lang === "fr" ? "Photographie principale" : "Main photograph"} />
         <div className="absolute inset-0 bg-gradient-to-b from-burgundy-deep/40 via-transparent to-burgundy-deep" />
         <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-burgundy-deep via-burgundy-deep/85 to-transparent" />
-        <div className="relative z-10 h-full pt-56 md:pt-72 text-center px-6 text-ivory animate-fade-up items-center justify-end flex flex-col">
+        <div className="relative z-10 h-full pt-40 md:pt-52 text-center px-6 text-ivory animate-fade-up items-center justify-end flex flex-col">
           <img
             src={coatOfArmsHero}
             alt="Armoiries de la Maison du Mandé"
-            className="block h-48 w-auto max-w-[90vw] object-contain mb-8 coat-glow-hero mx-px"
+            className="block h-28 md:h-32 w-auto max-w-[90vw] object-contain mb-4 coat-glow-hero mx-px"
           />
           <h1 className="sr-only">La Maison du Mandé</h1>
-          <div className="mt-6 ornament-divider max-w-md w-full">
-            <span className="font-display text-gold text-xs tracking-[0.4em]">✦</span>
+          <div className="mt-3 ornament-divider max-w-sm w-full">
+            <span className="font-display text-gold text-[0.65rem] tracking-[0.4em]">✦</span>
           </div>
-          <p className="mt-6 font-serif italic text-xl md:text-2xl text-ivory/90 max-w-2xl text-balance">
+          <p className="mt-3 font-serif italic text-base md:text-lg text-ivory/90 max-w-xl text-balance">
             {t("quote")}
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 mb-8">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3 mb-5">
             <Link
               to="/empire"
-              className="font-display text-xs tracking-[0.3em] uppercase bg-gold text-burgundy-deep px-8 py-4 hover:bg-ivory transition-colors shadow-gold"
+              className="font-display text-[0.7rem] tracking-[0.3em] uppercase bg-gold text-burgundy-deep px-6 py-3 hover:bg-ivory transition-colors shadow-gold"
             >
               {t("discover_empire")}
             </Link>
             <Link
               to="/humanitaire"
-              className="font-display text-xs tracking-[0.3em] uppercase border border-gold/80 text-ivory px-8 py-4 hover:bg-gold hover:text-burgundy-deep transition-colors"
+              className="font-display text-[0.7rem] tracking-[0.3em] uppercase border border-gold/80 text-ivory px-6 py-3 hover:bg-gold hover:text-burgundy-deep transition-colors"
             >
               {t("our_engagements")}
             </Link>
